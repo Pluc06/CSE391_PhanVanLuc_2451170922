@@ -82,3 +82,218 @@ Câu A4 (5đ) — Table
     + Hành vi hiển thị không mong muốn: Các thẻ trong bảng có những đặc tính hiển thị riêng (như tự động co giãn) khiến việc kiểm soát giao diện trên các thiết bị khác nhau (Responsive) trở nên cực kỳ khó khăn.
     + Code phức tạp và khó bảo trì: Layout bằng bảng thường có nhiều <tr> và <td> lồng nhau nên gây khó khăn cho việc đọc hiểu và sửa code.
     + Tốc độ render chậm: Trình duyệt phải tải gần xong bảng thì mới render chính xác được nội dung.
+
+PHẦN C — SUY LUẬN (20 điểm)
+
+Câu C1 (10đ) — Thiết kế cấu trúc
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <!-- head chứa metadata của trang -->
+    
+    <meta charset="UTF-8">
+    <!-- meta charset dùng để hỗ trợ tiếng Việt và Unicode -->
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- viewport giúp giao diện hiển thị tốt trên thiết bị di động -->
+    
+    <title>Chi tiết sản phẩm</title>
+    <!-- title là tiêu đề hiển thị trên tab trình duyệt -->
+</head>
+
+<body>
+    <!-- body chứa toàn bộ nội dung hiển thị của trang -->
+
+    <header>
+        <!-- header chứa phần đầu trang như logo và menu điều hướng -->
+
+        <a href="/" class="logo">TechShop</a>
+        <!-- a được dùng cho logo vì logo thường dẫn về trang chủ -->
+
+        <nav aria-label="Menu chính">
+            <!-- nav dùng cho khu vực điều hướng chính của website -->
+
+            <ul>
+                <!-- ul dùng vì menu là danh sách các liên kết không có thứ tự -->
+
+                <li><a href="#">Trang chủ</a></li>
+                <!-- li là một mục trong danh sách menu -->
+
+                <li><a href="#">Sản phẩm</a></li>
+
+                <li><a href="#">Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <nav aria-label="breadcrumb">
+        <!-- nav dùng cho breadcrumb vì đây là hệ thống điều hướng -->
+
+        <ol>
+            <!-- ol dùng vì breadcrumb có thứ tự phân cấp -->
+
+            <li><a href="#">Trang chủ</a></li>
+
+            <li><a href="#">Điện thoại</a></li>
+
+            <li aria-current="page">iPhone 16</li>
+            <!-- aria-current giúp xác định trang hiện tại -->
+        </ol>
+    </nav>
+
+    <main>
+        <!-- main chứa nội dung chính duy nhất của trang -->
+
+        <article class="product-detail">
+            <!-- article dùng vì đây là nội dung sản phẩm độc lập -->
+
+            <section class="product-overview">
+                <!-- section dùng để nhóm phần tổng quan sản phẩm -->
+
+                <section class="product-gallery">
+                    <!-- section này chứa khu vực ảnh sản phẩm -->
+
+                    <h2>Hình ảnh sản phẩm</h2>
+                    <!-- heading giúp xác định tiêu đề của section -->
+
+                    <figure>
+                        <!-- figure dùng để chứa nội dung media -->
+
+                        <img src="#" alt="Ảnh sản phẩm">
+                        <!-- img hiển thị hình ảnh sản phẩm -->
+
+                        <figcaption>Ảnh chính sản phẩm</figcaption>
+                        <!-- figcaption mô tả cho hình ảnh -->
+                    </figure>
+
+                    <img src="#" alt="Ảnh sản phẩm phụ 1">
+
+                    <img src="#" alt="Ảnh sản phẩm phụ 2">
+
+                    <img src="#" alt="Ảnh sản phẩm phụ 3">
+
+                    <img src="#" alt="Ảnh sản phẩm phụ 4">
+                </section>
+
+                <section class="product-info">
+                    <!-- section chứa thông tin chính của sản phẩm -->
+
+                    <h1>Tên sản phẩm</h1>
+                    <!-- h1 là tiêu đề chính quan trọng nhất của trang -->
+
+                    <p class="rating">Đánh giá sao</p>
+                    <!-- p dùng cho nội dung văn bản đơn giản -->
+
+                    <p class="price">Giá sản phẩm</p>
+
+                    <section class="description">
+                        <!-- section dùng để tách riêng phần mô tả -->
+
+                        <h2>Mô tả sản phẩm</h2>
+
+                        <p>Nội dung mô tả sản phẩm...</p>
+                    </section>
+                </section>
+            </section>
+
+            <section class="specifications">
+                <!-- section chứa bảng thông số kỹ thuật -->
+
+                <h2>Thông số kỹ thuật</h2>
+
+                <table>
+                    <!-- table dùng để trình bày dữ liệu dạng bảng -->
+
+                    <thead>
+                        <!-- thead chứa tiêu đề các cột -->
+
+                        <tr>
+                            <!-- tr là một hàng trong bảng -->
+
+                            <th>Thông số</th>
+                            <!-- th là ô tiêu đề cột -->
+
+                            <th>Chi tiết</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <!-- tbody chứa nội dung chính của bảng -->
+
+                        <tr>
+                            <td>Ví dụ thông số</td>
+                            <!-- td là ô dữ liệu trong bảng -->
+
+                            <td>Ví dụ chi tiết</td>
+                        </tr>
+
+                        <tr>
+                            <td>Ví dụ thông số</td>
+
+                            <td>Ví dụ chi tiết</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <section class="reviews">
+                <!-- section chứa đánh giá và bình luận của khách hàng -->
+
+                <h2>Đánh giá khách hàng</h2>
+
+                <article class="review-item">
+                    <!-- article dùng vì mỗi bình luận là một nội dung độc lập -->
+
+                    <header>
+                        <!-- header của bình luận chứa thông tin người đánh giá -->
+
+                        <strong>Tên người dùng</strong>
+                        <!-- strong nhấn mạnh tên người dùng -->
+
+                        <time datetime="2026-01-01">
+                            Ngày đánh giá
+                        </time>
+                        <!-- time biểu diễn thời gian theo semantic HTML -->
+                    </header>
+
+                    <p>Nội dung bình luận...</p>
+                    <!-- p dùng cho nội dung văn bản bình luận -->
+                </article>
+            </section>
+        </article>
+
+        <aside class="related-products">
+            <!-- aside chứa nội dung phụ liên quan đến sản phẩm chính -->
+
+            <h2>Sản phẩm tương tự</h2>
+
+            <ul>
+                <!-- ul dùng cho danh sách sản phẩm liên quan -->
+
+                <li><a href="#">Sản phẩm 1</a></li>
+
+                <li><a href="#">Sản phẩm 2</a></li>
+
+                <li><a href="#">Sản phẩm 3</a></li>
+            </ul>
+        </aside>
+    </main>
+
+    <footer>
+        <!-- footer chứa thông tin cuối trang -->
+
+        <p>Thông tin bản quyền</p>
+
+        <address>
+            <!-- address dùng cho thông tin liên hệ hoặc địa chỉ -->
+
+            Địa chỉ cửa hàng
+        </address>
+    </footer>
+
+</body>
+</html>
+
+Câu C2 (10đ) — So sánh & Tranh luận
+Quan điểm "dùng <div> cho mọi thứ" thực chất là một sai lầm kỹ thuật nghiêm trọng, thường được gọi là "Div-itis". Mặc dù thêm class giúp chúng ta định dạng giao diện, nhưng nó hoàn toàn thất bại trong việc giao tiếp với các hệ thống máy tính.Về mặt kỹ thuật, lý do đầu tiên là SEO (Tối ưu hóa tìm kiếm). Google Bot không ưu tiên đọc tên class (vốn mang tính cá nhân của lập trình viên), nó dựa vào các thẻ như <main>, <article>, <h1> để lập chỉ mục. Nếu chỉ dùng <div>, thuật toán sẽ coi trang web là một khối văn bản phẳng, khiến sản phẩm của bạn bị đẩy xuống dưới trên bảng xếp hạng tìm kiếm. Lý do thứ hai là Accessibility (Khả năng tiếp cận). Những người khiếm thị sử dụng Screen Reader dựa vào các thẻ như <nav> hoặc <button> để hiểu cấu trúc trang. Một trang web toàn <div> đối với họ giống như một cuốn sách không có mục lục và tiêu đề, khiến họ không thể điều hướng.Một ví dụ cụ thể: Trên trang sản phẩm, nếu dùng <div class="price-new">25tr</div>, Google chỉ thấy một con số. Nhưng nếu dùng thẻ <ins>25.000.000đ</ins>, trình duyệt và công cụ tìm kiếm hiểu ngay đây là "giá mới sau khi giảm". Điều này giúp hiển thị các thông tin khuyến mãi ngay trên kết quả tìm kiếm (Rich Snippets), giúp tăng tỷ lệ click của khách hàng.Tuy nhiên, <div> không hề bị "khai tử". Nó vẫn là lựa chọn phù hợp nhất trong trường hợp cần các container trung tính để phục vụ mục đích dàn trang (layout) hoặc bọc các phần tử để áp dụng CSS (như Flexbox/Grid) mà bản thân khối đó không mang ý nghĩa nội dung cụ thể nào.Việc học thêm hơn 20 thẻ Semantic không tốn thời gian bằng việc phải đi sửa lỗi SEO hay lỗi hiển thị trên các thiết bị hỗ trợ sau này. Đó là sự khác biệt giữa một thợ gõ code và một Web Developer chuyên nghiệp.
