@@ -1,5 +1,5 @@
-PHẦN A — KIỂM TRA ĐỌC HIỂU (20 điểm)
-Câu A1 (5đ) — HTTP & Browser
+# PHẦN A — KIỂM TRA ĐỌC HIỂU (20 điểm)
+## Câu A1 (5đ) — HTTP & Browser
 1. Khi gõ https://shopee.vn vào trình duyệt và nhấn Enter, các bước xảy ra sau đó là:
     B1: Gửi Request: Trình duyệt (Client) tạo một HTTP Request (thường là phương thức GET) để yêu cầu nội dung trang web.
     B2: Truyền tải qua mạng: Yêu cầu đi qua router, nhà mạng (ISP), cáp quang biển để đến máy chủ (Server) của Shopee.
@@ -14,7 +14,7 @@ Câu A1 (5đ) — HTTP & Browser
 (3) Một request trả về file CSS
 ![alt text](<ảnh/Screenshot 2026-04-24 222816.png>)
 *(Nguồn tham chiếu: File 01_introduction_html_universe.md — Phần 3 (HTTP — Giao thức giao tiếp), Phần 6 (Hands-on Practice) và Phụ lục.)
-Câu A2 (5đ) — Semantic HTML 
+## Câu A2 (5đ) — Semantic HTML 
 *(Nguồn tham chiếu:04_visible_part_html.md - Phần 1 và phần 3)
 - Trang web bị đánh giá SEO thấp vì mắc lỗi "Div Soup" (lạm dụng thẻ <div>). Việc sử dụng các thẻ vô nghĩa khiến Google không thể phân biệt được đâu là nội dung chính, đâu là thanh điều hướng, và đâu là các thành phần độc lập của trang.
 - Các lỗi semantic(dùng <div>):
@@ -54,7 +54,7 @@ Câu A2 (5đ) — Semantic HTML
 
 <footer>© 2026 ShopTLU</footer>
 
-Câu A3 (5đ) — Block vs Inline
+## Câu A3 (5đ) — Block vs Inline
 - Trình duyệt sẽ render đoạn mã như sau:
 Hộp 1
 Text AText B
@@ -71,7 +71,7 @@ Hộp 3
     - <strong>Text D</strong>: Thẻ <strong> cũng là Inline element. Nó tiếp tục nằm trên cùng một dòng với "Text C". Đồng thời <strong> là thẻ ngữ nghĩa (semantic) nhấn mạnh nội dung văn bản trong thẻ nên nội dung của nó là "Text D" sẽ được in đậm. 
     - <div>Hộp 3</div>: Là thẻ Block, nó tự xuống dòng và chiếm một dòng cuối cùng.
 
-Câu A4 (5đ) — Table
+## Câu A4 (5đ) — Table
 - Đây là ba thẻ dùng để phân nhóm ngữ nghĩa cho các hàng trong một bảng, giúp trình duyệt và các công cụ hỗ trợ hiểu rõ vai trò của từng phần dữ liệu.
     + <thead> (Table Header): Chứa các hàng tiêu đề của cột.
     + <tbody> (Table Body): Chứa nội dung dữ liệu chính của bảng.
@@ -83,9 +83,9 @@ Câu A4 (5đ) — Table
     + Code phức tạp và khó bảo trì: Layout bằng bảng thường có nhiều <tr> và <td> lồng nhau nên gây khó khăn cho việc đọc hiểu và sửa code.
     + Tốc độ render chậm: Trình duyệt phải tải gần xong bảng thì mới render chính xác được nội dung.
 
-PHẦN C — SUY LUẬN (20 điểm)
+# PHẦN C — SUY LUẬN (20 điểm)
 
-Câu C1 (10đ) — Thiết kế cấu trúc
+## Câu C1 (10đ) — Thiết kế cấu trúc
 <!DOCTYPE html>
 <html lang="vi">
 
@@ -295,5 +295,46 @@ Câu C1 (10đ) — Thiết kế cấu trúc
 </body>
 </html>
 
-Câu C2 (10đ) — So sánh & Tranh luận
+## Câu C2 (10đ) — So sánh & Tranh luận
 Quan điểm "dùng <div> cho mọi thứ" thực chất là một sai lầm kỹ thuật nghiêm trọng, thường được gọi là "Div-itis". Mặc dù thêm class giúp chúng ta định dạng giao diện, nhưng nó hoàn toàn thất bại trong việc giao tiếp với các hệ thống máy tính.Về mặt kỹ thuật, lý do đầu tiên là SEO (Tối ưu hóa tìm kiếm). Google Bot không ưu tiên đọc tên class (vốn mang tính cá nhân của lập trình viên), nó dựa vào các thẻ như <main>, <article>, <h1> để lập chỉ mục. Nếu chỉ dùng <div>, thuật toán sẽ coi trang web là một khối văn bản phẳng, khiến sản phẩm của bạn bị đẩy xuống dưới trên bảng xếp hạng tìm kiếm. Lý do thứ hai là Accessibility (Khả năng tiếp cận). Những người khiếm thị sử dụng Screen Reader dựa vào các thẻ như <nav> hoặc <button> để hiểu cấu trúc trang. Một trang web toàn <div> đối với họ giống như một cuốn sách không có mục lục và tiêu đề, khiến họ không thể điều hướng.Một ví dụ cụ thể: Trên trang sản phẩm, nếu dùng <div class="price-new">25tr</div>, Google chỉ thấy một con số. Nhưng nếu dùng thẻ <ins>25.000.000đ</ins>, trình duyệt và công cụ tìm kiếm hiểu ngay đây là "giá mới sau khi giảm". Điều này giúp hiển thị các thông tin khuyến mãi ngay trên kết quả tìm kiếm (Rich Snippets), giúp tăng tỷ lệ click của khách hàng.Tuy nhiên, <div> không hề bị "khai tử". Nó vẫn là lựa chọn phù hợp nhất trong trường hợp cần các container trung tính để phục vụ mục đích dàn trang (layout) hoặc bọc các phần tử để áp dụng CSS (như Flexbox/Grid) mà bản thân khối đó không mang ý nghĩa nội dung cụ thể nào.Việc học thêm hơn 20 thẻ Semantic không tốn thời gian bằng việc phải đi sửa lỗi SEO hay lỗi hiển thị trên các thiết bị hỗ trợ sau này. Đó là sự khác biệt giữa một thợ gõ code và một Web Developer chuyên nghiệp.
+
+# Phần B
+## Bài B3 (15đ) — Debug HTML
+Lỗi 1: Dòng 1 — Khai báo DOCTYPE sai cú pháp (`<!DOCTYPE>`) — Sửa thành `<!DOCTYPE html>`
+
+Lỗi 2: Dòng 4 — Thẻ `<title>` chưa đóng — Sửa thành: <title>Trang web</title>
+
+Lỗi 3: Dòng 5 — Charset viết sai chuẩn (`utf8`) — Sửa thành: <meta charset="UTF-8">
+
+Lỗi 4: Dòng 9 — Thẻ `<h1>` đóng sai cú pháp (`<h1>` thay vì `</h1>`) — Sửa thành: <h1>Welcome to ShopTLU</h1>
+
+Lỗi 5: Dòng 13 — Thẻ `<a>` đầu tiên chưa đóng đúng — Sửa thành: <a href="home">Trang chủ</a>
+
+Lỗi 6: Dòng 13 — Giá trị `href="home"` không phải đường dẫn hợp lệ/không rõ ràng — Sửa thành: <a href="home.html">
+
+Lỗi 7: Dòng 14 — `href="products"` không phải đường dẫn rõ ràng — Nên sửa thành: <a href="products.html">Sản phẩm</a>
+
+Lỗi 8: Dòng 20 — Thẻ `<img>` thiếu thuộc tính `alt` (lỗi semantic) — Sửa thành: <img src="iphone.jpg" alt="iPhone 16 Pro">
+
+Lỗi 9: Dòng 20 — Giá trị `src=iphone.jpg` không đặt trong dấu ngoặc kép — Sửa thành: <img src="iphone.jpg" alt="iPhone 16 Pro">
+
+Lỗi 10: Dòng 22 — Thẻ `<b>` đóng sai thứ tự với `<p>` — Sửa thành: <p>Giá: <b>25.990.000đ</b></p>
+
+Lỗi 11: Dòng 27–28 — Bảng thiếu phần tiêu đề semantic (`<th>`) — Sửa:
+<tr>
+    <th>Tên</th>
+    <th>Giá</th>
+</tr>
+
+Lỗi 12: Dòng 38 — Sử dụng thẻ `<main>` lần thứ hai là sai semantic vì mỗi trang chỉ nên có một `<main>` — Sửa thành:
+<aside>
+    <p>Sidebar content</p>
+</aside>
+
+Lỗi 13: Dòng 43 — Thẻ `<p>` trong footer chưa đóng — Sửa thành: <p>Copyright 2026</p>
+
+Lỗi 14: Toàn bộ tài liệu thiếu thẻ `<html lang="vi">` để khai báo ngôn ngữ trang — Sửa: <html lang="vi">
+
+Lỗi 15: Cấu trúc heading chưa hợp lý về semantic — Trang có `<h1>` rồi nhưng các section dùng `<h3>` trực tiếp, bỏ qua `<h2>` — Sửa:
+<h2>Sản phẩm hot</h2>
+<h2>Thông tin</h2>
