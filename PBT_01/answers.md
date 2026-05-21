@@ -338,3 +338,24 @@ Lỗi 14: Toàn bộ tài liệu thiếu thẻ `<html lang="vi">` để khai bá
 Lỗi 15: Cấu trúc heading chưa hợp lý về semantic — Trang có `<h1>` rồi nhưng các section dùng `<h3>` trực tiếp, bỏ qua `<h2>` — Sửa:
 <h2>Sản phẩm hot</h2>
 <h2>Thông tin</h2>
+
+## Bài B4 (15đ) — Phân tích trang web thật
+1. 
+- 3 thẻ semantic HTML5 mà trang đó sử dụng:
+Thẻ thứ nhất: <header> - Vị trí: <header class="header v2024 hashanner sticky1" data-sub="0">...</header>
+Thẻ thứ hai: <h1> - Vị trí: Thẻ <h1 class="sc-only">...</h1>
+Thẻ thứ ba: <footer> - Vị trí: <footer class="footer v2024">...</footer>
+
+2. 
+- Table đó hiển thị nội dung: hiển thị nội dung bảng giá bán chi tiết và các tùy chọn phiên bản của sản phẩm iPhone 17e trên hệ thống.
+- Thẻ <tbody>: Ngay dưới thẻ <colgroup>, toàn bộ các hàng của bảng đều được bao bọc hoàn toàn bên trong cặp thẻ <tbody>...</tbody>. Bên trong <tbody> chứa một loạt các thẻ <tr> (mỗi thẻ <tr> đại diện cho một hàng dữ liệu hiển thị thuộc tính giá).
+Bảng trên không sử dụng thẻ <thead>
+3. 
+- `action` và `method` của form:
+Nhìn trực tiếp vào thẻ <form> đang được chọn:
+<Form action="/tim-kiem" onsubmit="return suggestSearch(event);" class="header__search">
+Thuộc tính action: `action="/tim-kiem"`
+Ý nghĩa: Khi người dùng kích hoạt hành động tìm kiếm, toàn bộ dữ liệu nhập vào sẽ được gửi về đường dẫn /tim-kiem trên hệ thống máy chủ của Thế Giới Di Động để xử lý và trả về danh sách sản phẩm.
+Thuộc tính method: không được sử dụng ở form này
+- Input types được dùng:
+type="text": Thể hiện qua thẻ <input id="skw" type="text" class="input-search..." placeholder="iPhone 17 & ...">. Đây là ô nhập liệu chính, cho phép người dùng gõ chuỗi văn bản muốn tìm kiếm.
