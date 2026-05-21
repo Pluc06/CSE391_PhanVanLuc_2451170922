@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Test</title>
+</head>
+<body>
+    <h1>HTML5 Form Validation Test - 5 Trường Hợp</h1>
+    
+    <form>
+        <!-- Trường hợp 1 -->
+        <div>
+            <label>Trường hợp 1: required (bắt buộc nhập)</label>
+            <input type="text" required placeholder="Để trống để test">
+        </div>
+
+        <!-- Trường hợp 2 -->
+        <div>
+            <label>Trường hợp 2: type="email" (kiểm tra format email)</label>
+            <input type="email" placeholder="Nhập abc hoặc email sai">
+        </div>
+
+        <!-- Trường hợp 3 -->
+        <div>
+            <label>Trường hợp 3: type="number" min="1" max="10" (kiểm tra range)</label>
+            <input type="number" min="1" max="10" placeholder="Nhập 15 để test">
+        </div>
+
+        <!-- Trường hợp 4 -->
+        <div>
+            <label>Trường hợp 4: pattern="[0-9]{10}" (10 chữ số)</label>
+            <input type="text" pattern="[0-9]{10}" title="Phải nhập 10 chữ số" placeholder="Nhập abc123 để test">
+        </div>
+
+        <!-- Trường hợp 5 -->
+        <div>
+            <label>Trường hợp 5: type="password" minlength="8" (tối thiểu 8 ký tự)</label>
+            <input type="password" minlength="8" placeholder="Nhập ít hơn 8 ký tự để test">
+        </div>
+
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
