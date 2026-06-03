@@ -147,3 +147,10 @@ Cách 1:
 Dùng khi: Ảnh là nội dung bổ sung hoặc không có caption/chú thích, hoặc ảnh chỉ để trang trí/minh họa ngữ cảnh mà không cần giải thích chi tiết.
 Cách 2:
 Dùng khi: Ảnh là nội dung chính có caption/chú thích quan trọng để giải thích, hoặc ảnh cần được tham chiếu trong text.
+
+# PHẦN B — THỰC HÀNH CODE (55 điểm)
+## Bài B1 (20đ) — Form Đăng ký Tài khoản
+- HTML không thể validate được việc Confirm Password vì:
++ Lý do là vì các thuộc tính validation của HTML5 (như pattern, minlength, type, required...) sinh ra để kiểm tra tính hợp lệ của từng trường dữ liệu (input) một cách độc lập.
++ Nó chỉ có thể so sánh giá trị mà người dùng nhập vào với một biểu thức chính quy (regex) cố định hoặc một định dạng đã biết trước bên trong chính input đó. HTML5 hoàn toàn không có cơ chế hay thuộc tính nào hỗ trợ việc lấy giá trị của input này để đem đi so sánh chéo (cross-validation) với giá trị của một input khác.
++ Để làm được việc "bắt" hai ô mật khẩu phải giống hệt nhau, tụi mình bắt buộc phải dùng thêm JavaScript để lấy chuỗi (value) từ cả hai ô ra so sánh (bằng toán tử ===) khi người dùng ấn Submit hoặc khi đang nhập liệu.

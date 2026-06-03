@@ -1,0 +1,85 @@
+<form action="#" method="POST">
+  
+  <fieldset>
+    <legend>Thông tin cá nhân</legend>
+
+    <label for="fullname">Họ tên:</label>
+    <input type="text" id="fullname" name="fullname" required minlength="2" maxlength="50" placeholder="Nhập họ tên của bạn">
+    <br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required placeholder="nguyenvana@example.com">
+    <br><br>
+
+    <label for="phone">Số điện thoại:</label>
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Nhập 10 chữ số">
+    <br><br>
+
+    <label for="dob">Ngày sinh:</label>
+    <input type="date" id="dob" name="dob" max="2026-06-03" placeholder="dd/mm/yyyy">
+  </fieldset>
+  <br>
+
+  <fieldset>
+    <legend>Tài khoản</legend>
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" pattern="[a-zA-Z0-9_]{3,20}" placeholder="Nhập tên đăng nhập (3-20 ký tự)">
+    <br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" minlength="8" pattern="(?=.*[A-Z])(?=.*\d).+" placeholder="Mật khẩu (ít nhất 1 chữ hoa, 1 số)">
+    <br><br>
+
+    <label for="confirm_password">Xác nhận password:</label>
+    <input type="password" id="confirm_password" name="confirm_password" minlength="8" pattern="(?=.*[A-Z])(?=.*\d).+" placeholder="Nhập lại mật khẩu">
+  </fieldset>
+  <br>
+
+  <fieldset>
+    <legend>Thông tin giao hàng</legend>
+
+    <label for="city">Thành phố:</label>
+    <select id="city" name="city">
+      <option value="" disabled selected hidden>-- Chọn Thành phố --</option>
+      <option value="hanoi">Hà Nội</option>
+      <option value="hcm">Hồ Chí Minh</option>
+      <option value="danang">Đà Nẵng</option>
+      <option value="haiphong">Hải Phòng</option>
+      <option value="thanhhoa">Thanh Hóa</option>
+    </select>
+    <br><br>
+
+    <label for="district">Quận/Huyện:</label>
+    <select id="district" name="district">
+      <option value="" disabled selected hidden>-- Chọn Quận/Huyện --</option>
+      <option value="d1">Quận 1</option>
+      <option value="d2">Quận 2</option>
+      <option value="d3">Quận 3</option>
+    </select>
+    <br><br>
+
+    <label for="address">Địa chỉ chi tiết:</label>
+    <textarea id="address" name="address" rows="3" placeholder="Nhập số nhà, tên đường..."></textarea>
+    <br><br>
+
+    <label>Giới tính:</label>
+    <input type="radio" id="gender_male" name="gender" value="nam">
+    <label for="gender_male">Nam</label>
+    
+    <input type="radio" id="gender_female" name="gender" value="nu">
+    <label for="gender_female">Nữ</label>
+    
+    <input type="radio" id="gender_other" name="gender" value="khac">
+    <label for="gender_other">Khác</label>
+  </fieldset>
+  <br>
+
+  <input type="checkbox" id="terms" name="terms" required>
+  <label for="terms">Tôi đồng ý với các điều khoản sử dụng</label>
+  <br><br>
+
+  <button type="submit">Đăng ký</button>
+  <button type="reset">Làm mới</button>
+
+</form>
