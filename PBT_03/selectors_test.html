@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiểm chứng CSS Selectors</title>
+    <style>
+        /* Gốc để dễ nhìn */
+        body { font-family: Arial, sans-serif; padding: 20px; line-height: 1.6; }
+        div { border: 1px dashed #ccc; padding: 10px; margin-bottom: 20px; }
+        
+        /* CẬU CÓ THỂ BẬT/TẮT CÁC ĐOẠN CODE DƯỚI ĐÂY ĐỂ KIỂM CHỨNG TỪNG CÂU */
+
+        /* 1. Chọn h1 -> Đổi chữ thành màu đỏ */
+        h1 { color: red; }
+
+        /* 2. Chọn .price -> Tô nền màu vàng */
+        .price { background-color: yellow; }
+
+        /* 3. Chọn #app header -> Thêm viền màu xanh dương dày quanh header */
+        #app header { border: 3px solid blue; }
+
+        /* 4. Chọn nav a:first-child -> Thêm gạch chân màu đỏ dưới chữ Home */
+        nav a:first-child { text-decoration: underline overline; color: green; font-weight: bold; }
+
+        /* 5. Chọn .product.featured h2 -> Đổi chữ thành màu tím */
+        .product.featured h2 { color: purple; }
+
+        /* 6. Chọn article > p -> Thêm viền màu cam đứt đoạn quanh các thẻ p con */
+        article > p { border: 1px dashed orange; }
+
+        /* 7. Chọn a[href="/"] -> Đổi màu nền của chữ Home thành màu hồng */
+        a[href="/"] { background-color: pink; }
+
+        /* 8. Chọn .top-bar.dark h1 -> Thêm nền màu xám cho tiêu đề ShopTLU */
+        .top-bar.dark h1 { background-color: #e0e0e0; }
+    </style>
+</head>
+<body>
+
+    <h2>Trang kiểm chứng các thuộc tính Selector</h2>
+    <hr>
+
+    <div id="app">
+        <header class="top-bar dark">
+            <h1>ShopTLU</h1>
+            <nav>
+                <a href="/" class="active">Home</a>
+                <a href="/products">Products</a>
+                <a href="/about">About</a>
+            </nav>
+        </header>
+        <main>
+            <article class="product">
+                <h2>iPhone 16</h2>
+                <p class="price">25.990.000đ</p>
+                <p>Mô tả sản phẩm...</p>
+            </article>
+            <article class="product featured">
+                <h2>MacBook Pro</h2>
+                <p class="price">45.990.000đ</p>
+                <p>Mô tả sản phẩm...</p>
+            </article>
+        </main>
+    </div>
+
+</body>
+</html>
