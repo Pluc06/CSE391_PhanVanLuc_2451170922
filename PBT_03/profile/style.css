@@ -1,0 +1,85 @@
+* { box-sizing: border-box; }
+
+/* Định dạng cơ bản cho toàn bộ trang */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f7fa;
+    color: #333333;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header với background gradient màu xanh và chữ trắng */
+header {
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #ffffff;
+    padding: 40px 20px;
+    text-align: center;
+}
+
+/* Định dạng các đường dẫn thanh điều hướng */
+nav {
+    margin-top: 15px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #e0e0e0;
+    margin: 0 15px;
+    font-weight: 500;
+}
+
+/* Trạng thái Hover: đổi màu vàng và có gạch chân */
+nav a:hover {
+    color: #ffd700;
+    text-decoration: underline;
+}
+
+/* Trạng thái Link đang active: nổi bật hoàn toàn */
+nav a.active {
+    color: #ffffff;
+    font-weight: bold;
+    border-bottom: 2px solid #ffffff;
+    padding-bottom: 5px;
+}
+
+/* Định dạng bảng kỹ năng sử dụng ID */
+#skills-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 25px 0;
+    background-color: #ffffff;
+}
+
+#skills-table th, #skills-table td {
+    border: 1px solid #dddddd;
+    padding: 12px;
+    text-align: left;
+}
+
+/* Header row của bảng: background đậm và chữ trắng */
+#skills-table th {
+    background-color: #1e3c72;
+    color: #ffffff;
+}
+
+/* Zebra striping: Đổi background cho các dòng chẵn */
+#skills-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+/* Hover row: đổi background khi di chuột qua dòng */
+#skills-table tr:hover {
+    background-color: #e2eafc;
+}
+
+/* Định dạng phần Footer */
+footer {
+    background-color: #1a1a1a;
+    color: #a0a0a0;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    font-size: 14px;
+}

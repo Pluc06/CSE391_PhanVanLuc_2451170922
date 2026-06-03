@@ -193,3 +193,21 @@ Giải thích: Thuộc tính style="..." gọi là Inline CSS (nhúng trực ti�
 Màu của element: Màu đen (black).
 Tại sao: Từ khóa !important trong CSS là một công cụ đặc biệt dùng để phá vỡ mọi quy tắc về độ ưu tiên thông thường. Khi cậu gắn !important vào sau thuộc tính color: black của Rule A, trình duyệt sẽ lập tức tối ưu và ưu tiên cho thuộc tính này lên mức cao nhất, đè bẹp cả ID selector lẫn Inline CSS (style="color: orange;"). Do đó element bắt buộc phải hiển thị màu đen.
 
+# PHẦN B — THỰC HÀNH CODE (55 điểm)
+## Bài B1 (20đ) — Style trang Profile
+Danh sách 5 loại selector khác nhau đã sử dụng trong dự án:
+
+Element Selector (Bộ chọn thẻ): Target trực tiếp vào các thẻ HTML để áp dụng style chung.
+Ví dụ trong bài: body, header, footer
+
+Class Selector (Bộ chọn lớp): Sử dụng dấu chấm (.) đi kèm tên class để định dạng cho các phần tử có class tương ứng.
+Ví dụ trong bài: .active (dùng để làm nổi bật link trang hiện tại)
+
+ID Selector (Bộ chọn định danh): Sử dụng dấu thăng (#) đi kèm tên id để định dạng cho một phần tử duy nhất.
+Ví dụ trong bài: #skills-table (dùng để định dạng riêng cho bảng kỹ năng)
+
+Descendant Selector (Bộ chọn hậu duệ): Kết hợp các bộ chọn cách nhau bằng dấu cách để target vào phần tử con nằm bên trong phần tử cha.
+Ví dụ trong bài: nav a (chọn tất cả các thẻ <a> nằm bên trong thẻ <nav>)
+
+Pseudo-class Selector (Bộ chọn lớp giả): Dùng để định dạng các trạng thái đặc biệt của phần tử khi có tác động từ người dùng hoặc theo vị trí cấu trúc.
+Ví dụ trong bài: nav a:hover (khi di chuột qua link), tr:hover (khi di chuột qua dòng), và tr:nth-child(even) (chọn các dòng chẵn để làm hiệu ứng zebra)
