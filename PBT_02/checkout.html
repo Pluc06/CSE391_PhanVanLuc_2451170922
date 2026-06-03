@@ -1,0 +1,113 @@
+<form action="#" method="POST">
+
+  <fieldset>
+    <legend>Tìm kiếm sản phẩm</legend>
+    <label for="search_product">Tìm nhanh:</label>
+    <input type="search" id="search_product" name="search_product" list="product_suggestions" placeholder="Nhập tên sản phẩm cần tìm...">
+    <datalist id="product_suggestions">
+      <option value="Laptop Dell Inspiron 15">
+      <option value="Bàn phím cơ AKKO 3087">
+      <option value="Chuột không dây Logitech G102">
+      <option value="Tai nghe chụp tai Sony WH-1000XM4">
+    </datalist>
+  </fieldset>
+  <br>
+
+  <fieldset>
+    <legend>Phần 1: Giỏ hàng của bạn</legend>
+    <table border="1" style="border-collapse: collapse; width: 100%; text-align: left;">
+      <thead>
+        <tr>
+          <th>STT</th>
+          <th>Sản phẩm</th>
+          <th>Đơn giá</th>
+          <th>Số lượng</th>
+          <th>Thành tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Laptop Dell Inspiron 15</td>
+          <td>15.000.000đ</td>
+          <td>1</td>
+          <td>15.000.000đ</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Bàn phím cơ AKKO 3087</td>
+          <td>1.200.000đ</td>
+          <td>1</td>
+          <td>1.200.000đ</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Chuột không dây Logitech G102</td>
+          <td>400.000đ</td>
+          <td>2</td>
+          <td>800.000đ</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="font-weight: bold; text-align: right;">Tổng cộng:</td>
+          <td><output id="total_price" style="font-weight: bold;">17.000.000đ</output></td>
+        </tr>
+      </tfoot>
+    </table>
+    
+    <p>
+      <label for="loyalty_points">Điểm tích lũy hiện tại:</label>
+      <meter id="loyalty_points" min="0" max="100" low="30" high="80" optimum="90" value="75">75/100</meter> (75 điểm)
+    </p>
+  </fieldset>
+  <br>
+
+  <fieldset>
+    <legend>Phần 2: Thông tin thanh toán</legend>
+    
+    <label>Phương thức thanh toán:</label><br>
+    <input type="radio" id="pay_cod" name="payment_method" value="cod" checked>
+    <label for="pay_cod">COD (Thanh toán khi nhận hàng)</label><br>
+    
+    <input type="radio" id="pay_transfer" name="payment_method" value="transfer">
+    <label for="pay_transfer">Chuyển khoản ngân hàng</label><br>
+    
+    <input type="radio" id="pay_wallet" name="payment_method" value="wallet">
+    <label for="pay_wallet">Ví điện tử</label>
+    <br><br>
+
+    <label for="coupon">Mã giảm giá:</label>
+    <input type="text" id="coupon" name="coupon" pattern="SALE[0-9]{4}" placeholder="Ví dụ: SALE2026">
+    <br><br>
+
+    <label for="order_notes">Ghi chú đơn hàng:</label><br>
+    <textarea id="order_notes" name="order_notes" rows="4" cols="50" placeholder="Nhập ghi chú hoặc yêu cầu đặc biệt khi giao hàng (tùy chọn)"></textarea>
+  </fieldset>
+  <br>
+
+  <fieldset>
+    <legend>Phần 3: Thông tin giao hàng</legend>
+
+    <label for="delivery_date">Ngày giao hàng mong muốn:</label>
+    <input type="date" id="delivery_date" name="delivery_date" min="2026-06-04" placeholder="dd/mm/yyyy">
+    <br><br>
+
+    <label for="delivery_time">Khung giờ giao hàng:</label>
+    <select id="delivery_time" name="delivery_time">
+      <option value="" disabled selected hidden>-- Chọn khung giờ --</option>
+      <option value="morning">Sáng 8-12h</option>
+      <option value="afternoon">Chiều 14-18h</option>
+      <option value="evening">Tối 18-21h</option>
+    </select>
+    <br><br>
+
+    <label for="delivery_range">Thời gian nhận hàng mong muốn (từ 1 đến 7 ngày):</label><br>
+    <input type="range" id="delivery_range" name="delivery_range" min="1" max="7" step="1" value="3" placeholder="Chọn số ngày">
+    <span>(Kéo để chọn số ngày mong muốn nhận được hàng)</span>
+  </fieldset>
+  <br>
+
+  <button type="submit" aria-label="Xác nhận đặt hàng">Xác nhận đặt hàng</button>
+
+</form>
