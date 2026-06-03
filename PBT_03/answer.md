@@ -280,3 +280,76 @@ Dưới đây là bảng tính điểm độ ưu tiên (Specificity Score) đư�
 - **Giải thích:**
   Trong CSS, quy tắc dòng chảy từ trên xuống (Source Order) chỉ có tác dụng khi và chỉ khi hai selector có **cùng điểm độ ưu tiên (Specificity Score)**. 
   Vì rule `p#demo.text.highlight` có điểm độ ưu tiên cao nhất (`1, 2, 1`) trong tất cả các rule, nên dù mình có đảo nó lên đầu file, ở giữa file, hay giữ nguyên ở cuối file, trình duyệt vẫn ưu tiên chọn nó để render.
+
+# PHẦN C — DEBUG & SUY LUẬN (20 điểm)
+## Câu C1 (10đ) — Debug CSS Layout
+
+1. Tính toán chiều rộng thực tế và Giải thích lý do vỡ layout
+Chiều rộng thực tế của các phần tử (theo mặc định content-box)
+Theo cơ chế mặc định box-sizing: content-box, thuộc tính width chỉ là chiều rộng của phần nội dung (content). Chiều rộng thực tế chiếm dụng trên màn hình của phần tử phải tính theo công thức:
+
+Chiều rộng thực tế = width + padding (trái + phải) + border (trái + phải)
+
+Sidebar: Chiều rộng thực tế = 300px + (20px x 2) + (1px x 2) = 300px + 40px + 2px = 342px
+
+Content: Chiều rộng thực tế = 660px + (30px x 2) + (1px x 2) = 660px + 60px + 2px = 722px
+
+Giải thích tại sao layout bị vỡ
+Tổng chiều rộng thực tế của cả Sidebar và Content khi muốn xếp cạnh nhau là: 342px + 722px = 1064px.
+
+Trong khi đó, phần tử cha bao bọc bên ngoài (.container) chỉ có độ rộng cố định là 960px.
+
+Vì 1064px > 960px (vượt quá kích thước vùng chứa cho phép), không đủ khoảng trống hàng ngang nên phần tử sinh sau là .content đã bị đẩy (rớt) xuống dòng mới mặc dù đã dùng thuộc tính float: left.
+
+2. Hai cách sửa layout
+Cách 1 (Dùng border-box): Thay đổi cơ chế tính hộp thành box-sizing: border-box. Lúc này, kích thước width khai báo sẽ bao gồm cả padding và border. Tổng chiều rộng của 2 khối sẽ chuẩn khít bằng 300px + 660px = 960px.
+
+Cách 2 (Không dùng border-box - Tính toán thủ công): Giữ nguyên content-box, trừ bớt phần padding và border ra khỏi thuộc tính width gốc để chiều rộng thực tế sau cùng của hai khối cộng lại vừa đúng bằng 960px.
+
+Width mới của Sidebar = 300px - 42px = 258px
+
+Width mới của Content = 660px - 62px = 598px
+(Tổng kích thước thực tế chiếm dụng lúc này: 300px + 660px = 960px)
+
+## Câu C2 (10đ) — Cascade Puzzle
+
+1. "Sản phẩm A" (h2 class="title highlight" trong #featured)
+Kết quả: font-size = 20px, color = green.
+
+Giải thích chi tiết:
+
+Về font-size: Phần tử h2 này bị ảnh hưởng bởi rule .card .title { font-size: 20px; }. Do đây là rule nhắm trực tiếp (target) vào phần tử và có độ ưu tiên cao hơn các giá trị kế thừa từ body (16px) hay .container (14px), nên trình duyệt chọn 20px.
+
+Về color: Có hai rule cùng target vào màu sắc của phần tử này là #featured .title (Độ ưu tiên: 1 ID, 1 Class = 1,1,0 -> chỉ định màu red) và .highlight (Độ ưu tiên: 1 Class = 0,1,0 -> chỉ định màu green !important). Mặc dù selector chứa ID có điểm gốc cao hơn, nhưng từ khóa !important ở rule .highlight có quyền năng tối cao, phá vỡ mọi quy tắc tính điểm thông thường. Do đó, màu sắc cuối cùng hiển thị là green.
+
+2. "Mô tả sản phẩm" (p trong card featured)
+Kết quả: color = blue.
+
+Giải thích chi tiết:
+
+Phần tử p này được target trực tiếp bởi rule .card p { color: inherit; }.
+
+Từ khóa inherit ép phần tử này bắt buộc phải lấy giá trị màu từ phần tử cha trực tiếp bao bọc nó, cụ thể ở đây là <div class="card" id="featured">.
+
+Xét phần tử cha .card, nó được quy định màu sắc bởi rule .card { color: blue; }. Vì vậy, giá trị màu của cha là blue. Phần tử p kế thừa lại giá trị này và hiển thị màu blue.
+
+3. "Sản phẩm B" (h2 class="title" trong card thông thường)
+Kết quả: font-size = 20px, color = blue.
+
+Giải thích chi tiết:
+
+Về font-size: Tương tự như sản phẩm A, rule .card .title { font-size: 20px; } target trực tiếp vào khối này nên nó nhận giá trị 20px.
+
+Về color: Không có rule nào target trực tiếp vào thuộc tính color của phần tử h2 này (rule #featured .title không ăn vì h2 này nằm ngoài khối #featured). Lúc này, cơ chế kế thừa (Inheritance) được kích hoạt. Vì color là một thuộc tính có tính chất kế thừa tự nhiên, h2 sẽ tìm lên cha của nó là .card. Khối .card đang ăn màu từ rule .card { color: blue; }, do đó h2 kế thừa lại màu blue.
+
+4. "Mô tả sản phẩm B" (p class="highlight" trong card thông thường)
+Kết quả: color = green.
+
+Giải thích chi tiết:
+
+Có hai rule cùng tranh chấp trên phần tử p này: rule .card p { color: inherit; } (muốn nó lấy màu xanh dương từ cha) và rule .highlight { color: green !important; } (muốn nó có màu xanh lá).
+
+Nhờ có sự xuất hiện của từ khóa !important trong thuộc tính màu của lớp .highlight, mọi quy tắc kế thừa hay độ ưu tiên thông thường đều bị gạt bỏ. Trình duyệt lập tức áp dụng màu green cho đoạn văn này.
+
+* Tạo thư mục verify bao gồm verify.html và verify.css:
+kiểm chứng: ![alt text](screenshots/verify.png)

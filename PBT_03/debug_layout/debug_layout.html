@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug CSS Layout</title>
+    <link rel="stylesheet" href="debug_layout.css">
+</head>
+<body>
+
+    <h2>CÁCH 1: Dùng thuộc tính border-box</h2>
+    <div class="container container-fix1">
+        <div class="sidebar sidebar-fix1">Sidebar (Cách 1)</div>
+        <div class="content content-fix1">Content (Cách 1)</div>
+        <div class="clearfix"></div>
+    </div>
+
+    <br><br>
+
+    <h2>CÁCH 2: Tính toán thủ công (Không dùng border-box)</h2>
+    <div class="container container-fix2">
+        <div class="sidebar sidebar-fix2">Sidebar (Cách 2)</div>
+        <div class="content content-fix2">Content (Cách 2)</div>
+        <div class="clearfix"></div>
+    </div>
+
+</body>
+</html>
