@@ -154,3 +154,58 @@ Dùng khi: Ảnh là nội dung chính có caption/chú thích quan trọng đ�
 + Lý do là vì các thuộc tính validation của HTML5 (như pattern, minlength, type, required...) sinh ra để kiểm tra tính hợp lệ của từng trường dữ liệu (input) một cách độc lập.
 + Nó chỉ có thể so sánh giá trị mà người dùng nhập vào với một biểu thức chính quy (regex) cố định hoặc một định dạng đã biết trước bên trong chính input đó. HTML5 hoàn toàn không có cơ chế hay thuộc tính nào hỗ trợ việc lấy giá trị của input này để đem đi so sánh chéo (cross-validation) với giá trị của một input khác.
 + Để làm được việc "bắt" hai ô mật khẩu phải giống hệt nhau, tụi mình bắt buộc phải dùng thêm JavaScript để lấy chuỗi (value) từ cả hai ô ra so sánh (bằng toán tử ===) khi người dùng ấn Submit hoặc khi đang nhập liệu.
+
+# PHẦN C — PHÂN TÍCH & SUY LUẬN (20 điểm)
+## Câu C1 (10đ) — Debug Form
+Lỗi 1: Dòng 1 — Thẻ <form> thiếu thuộc tính action và method, vi phạm best practice khi thiết lập form thu thập dữ liệu.
+Sửa: <form action="#" method="POST">
+
+Lỗi 2: Dòng 2 — Input "Tên" không có <label for="..."> kết nối với id tương ứng, vi phạm accessibility; đồng thời thiếu thuộc tính name để gửi dữ liệu lên server và required để bắt buộc nhập.
+Sửa: <label for="fullname">Tên:</label> <input type="text" id="fullname" name="fullname" placeholder="Nhập họ tên" required>
+
+Lỗi 3: Dòng 4 — Input "Email" thiếu hẳn thẻ <label>, thiếu thuộc tính id, name và thiếu thuộc tính required để validate dữ liệu trống.
+Sửa: <label for="email">Email:</label> <input type="email" id="email" name="email" placeholder="Email của bạn" required>
+
+Lỗi 4: Dòng 6 — Input "Mật khẩu" thiếu thẻ <label>, thiếu thuộc tính id, name và thiếu thuộc tính required để bắt buộc người dùng nhập mật khẩu.
+Sửa: <label for="password">Mật khẩu:</label> <input type="password" id="password" name="password" placeholder="Mật khẩu" required>
+
+Lỗi 5: Dòng 7 — Input "Nhập lại mật khẩu" thiếu thẻ <label>, thiếu thuộc tính id và name để quản lý ô xác nhận mật khẩu.
+Sửa: <label for="confirm_password">Nhập lại mật khẩu:</label> <input type="password" id="confirm_password" name="confirm_password" placeholder="Nhập lại mật khẩu" required>
+
+Lỗi 6: Dòng 9 — Input "Phone" dùng sai kiểu dữ liệu type="text" (chuẩn phải là type="tel"), thiếu kết nối <label for="..."> và thiếu id, name, pattern để validate đúng định dạng số điện thoại.
+Sửa: <label for="phone">Phone:</label> <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="Nhập 10 chữ số" value="0901234567">
+
+Lỗi 7: Dòng 11 — Thẻ <select> thiếu <label>, thiếu thuộc tính id, name và các thẻ <option> bên trong thiếu thuộc tính value để truyền giá trị đi khi submit form.
+Sửa: <label for="city">Thành phố:</label> <select id="city" name="city"> <option value="hanoi">Hà Nội</option> <option value="hcm">TP.HCM</option> </select>
+
+Lỗi 8: Dòng 16 — Khối "Tôi đồng ý điều khoản" mới chỉ có thẻ <label> chứa chữ chứ hoàn toàn thiếu thẻ <input type="checkbox"> để người dùng click chọn, và thiếu thuộc tính required.
+Sửa: <input type="checkbox" id="terms" name="terms" required> <label for="terms">Tôi đồng ý điều khoản</label>
+
+## Câu C2 (10đ) — Thiết kế chiến lược Validation
+1. Viết pattern regex cho CMND/CCCD và Số tài khoản
+Trong thuộc tính pattern của HTML5, dấu ^ và $ tự động được hiểu ngầm nên tụi mình chỉ cần viết biểu thức cốt lõi thôi:
+
+CMND/CCCD (Đúng 12 chữ số): pattern="[0-9]{12}"
+
+Số tài khoản (Từ 10 đến 15 chữ số): pattern="[0-9]{10,15}"
+
+(Đối với mã PIN không hiển thị, tụi mình chỉ cần dùng loại type="password" kết hợp với pattern="[0-9]{6}" nhé).
+
+2. HTML5 validation đã đủ an toàn cho ứng dụng ngân hàng chưa? Tại sao?
+Trả lời: Hoàn toàn CHƯA ĐỦ an toàn.
+
+Tại sao: HTML5 validation thực chất chỉ chạy trên trình duyệt (Frontend). Nó sinh ra để cải thiện trải nghiệm người dùng (UX), giúp họ biết mình nhập sai định dạng ngay lập tức mà không cần đợi tải lại trang.
+
+Về mặt bảo mật, HTML5 rất dễ bị vô hiệu hóa. Bất kỳ ai (hoặc các hacker) đều có thể dễ dàng nhấn F12 (Inspect Element) để xóa phăng các thuộc tính required hay pattern đi, hoặc dùng các công cụ như Postman, cURL để gửi thẳng dữ liệu "bẩn" lên server mà không cần thông qua giao diện form HTML của mình. Vì vậy, đối với ứng dụng nhạy cảm như ngân hàng số, HTML5 chỉ là lớp bảo vệ "vòng ngoài" cho đẹp thôi.
+
+3. 3 loại validation mà HTML5 KHÔNG THỂ làm được (phải dùng JavaScript)
+Xác thực phụ thuộc lẫn nhau (Cross-field validation): Ví dụ như so sánh ô "Nhập lại mật khẩu" phải trùng khớp với ô "Mật khẩu", hoặc kiểm tra ngày kết thúc phải lớn hơn ngày bắt đầu.
+
+Kiểm tra dữ liệu thời gian thực với Database (Asynchronous/AJAX validation): Kiểm tra xem Số tài khoản, Số điện thoại hoặc Email này đã tồn tại trong hệ thống của ngân hàng hay chưa mà không cần tải lại toàn bộ trang.
+
+Logic xác thực động phức tạp (Dynamic conditional validation): Thay đổi quy tắc validate dựa theo lựa chọn trước đó. Ví dụ: Nếu người dùng chọn quốc tịch "Việt Nam" thì bắt buộc validate CCCD (12 số), còn nếu chọn quốc tịch "Nước ngoài" thì ẩn ô CCCD và chuyển sang bắt buộc nhập Hộ chiếu (Passport) với định dạng hoàn toàn khác.
+
+4. 2 rủi ro bảo mật nếu chỉ validate trên Frontend mà không validate Backend
+Hệ thống bị phá hoại hoặc tràn dữ liệu lỗi (Data Corruption / SQL Injection): Kẻ xấu có thể chèn các đoạn mã độc, ký tự lạ hoặc chuỗi quá dài vào ô "Số tài khoản" hoặc "Mã PIN". Nếu Backend không kiểm tra lại mà bê thẳng đi xử lý, hệ thống có thể bị sập, lỗi logic tính toán, hoặc tệ hơn là bị hack mất dữ liệu database thông qua lỗ hổng SQL Injection.
+
+Bị qua mặt logic nghiệp vụ (Business Logic Bypass) dẫn đến gian lận tài chính: Kẻ tấn công có thể sửa đổi dữ liệu đầu vào thành các giá trị không hợp lệ nhưng có lợi cho họ (ví dụ: đổi số tiền cần chuyển thành một số âm -5.000.000đ hoặc đổi hạn mức giao dịch vượt quá quy định). Nếu Backend tin tưởng hoàn toàn vào Frontend và thực hiện lệnh, ngân hàng sẽ bị tổn thất cực kỳ nghiêm trọng về tài chính và vận hành.
