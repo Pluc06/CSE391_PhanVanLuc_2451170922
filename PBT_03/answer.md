@@ -211,3 +211,72 @@ Ví dụ trong bài: nav a (chọn tất cả các thẻ <a> nằm bên trong th
 
 Pseudo-class Selector (Bộ chọn lớp giả): Dùng để định dạng các trạng thái đặc biệt của phần tử khi có tác động từ người dùng hoặc theo vị trí cấu trúc.
 Ví dụ trong bài: nav a:hover (khi di chuột qua link), tr:hover (khi di chuột qua dòng), và tr:nth-child(even) (chọn các dòng chẵn để làm hiệu ứng zebra)
+
+## Bài B2 (20đ) — Box Model Lab
+
+* Phần 1 — Chứng minh content-box vs border-box
+Hộp 1 (content-box):** Chiều rộng thực tế = **350px** (đo từ DevTools)
+Hộp 2 (border-box):** Chiều rộng thực tế = **300px** (đo từ DevTools)
+
+Giải thích sự khác biệt:
+Với content-box (mặc định):** Kích thước `width: 300px` chỉ áp dụng cho phần nội dung (content) bên trong. Chiều rộng thực tế hiển thị trên trình duyệt sẽ bị cộng thêm phần padding và border sang hai bên.
+  Công thức tính:* 300px (width) + 40px (padding trái + phải) + 10px (border trái + phải) = **350px**.
+
+Với border-box:** Kích thước `width: 300px` được cố định là tổng kích thước của cả hộp bao gồm cả content, padding và border. Trình duyệt sẽ tự động bóp nhỏ phần content bên trong lại (còn 250px) để đảm bảo tổng chiều rộng bên ngoài luôn đúng bằng **300px**.
+
+screenshots: ![alt text](screenshots/border-box.png)
+             ![alt text](screenshots/content-box.png)
+
+* Phần 2 — Tính toán chứng minh Layout 3 cột
+
+- Trường hợp 1: Nếu KHÔNG dùng border-box (hệ thống dùng content-box)
+Tổng chiều rộng thực tế của 3 cột sẽ là:
++ Cột trái: 250px (width) + 15px × 2 (padding) = 280px
++ Cột giữa: 500px (width) + 20px × 2 (padding) = 540px
++ Cột phải: 250px (width) + 15px × 2 (padding) = 280px
++ Tổng cộng 3 cột: 280px + 540px + 280px = 1100px
+
+Hệ quả Do 1100px > 1000px (vượt quá chiều rộng của container chứa nó), layout sẽ lập tức bị vỡ, cột bên phải cùng sẽ bị đẩy rớt xuống hàng dưới.
+
+- Trường hợp 2: Khi dùng border-box
++ Chiều rộng mỗi cột giữ nguyên theo khai báo: 250px + 500px + 250px = 1000px
++ Kích thước này vừa khít với container giúp layout hiển thị hoàn hảo trên cùng một hàng.
+
+screenshots: ![alt text](screenshots/khong_co_border-box.png)
+             ![alt text](screenshots/co_border-box.png)
+
+# Bài B3 (15đ) — Specificity Battle
+
+1. Danh sách 10 CSS Rules và Điểm Specificity (Sắp xếp từ thấp đến cao)
+
+Dưới đây là bảng tính điểm độ ưu tiên (Specificity Score) được tính theo công thức: `(Inline style, ID, Class/Attribute/Pseudo-class, Element/Pseudo-element)`
+
+| STT | CSS Selector | Specificity Score | Màu sắc chỉ định |
+| :--- | :--- | :--- | :--- |
+| 1 | `*` | 0, 0, 0 | lightgray |
+| 2 | `p` | 0, 0, 1 | red |
+| 3 | `body p` | 0, 0, 2 | blue |
+| 4 | `.text` | 0, 1, 0 | green |
+| 5 | `p.text` | 0, 1, 1 | purple |
+| 6 | `.text.highlight` | 0, 2, 0 | orange |
+| 7 | `p.text.highlight` | 0, 2, 1 | pink |
+| 8 | `#demo` | 1, 0, 0 | brown |
+| 9 | `p#demo` | 1, 0, 1 | cyan |
+| 10 | `p#demo.text.highlight` | 1, 2, 1 | black |
+
+
+2. Kết quả hiển thị và Giải thích
+
+- **Màu hiển thị cuối cùng:** Màu đen (`black`).
+- **Giải thích:** Trình duyệt sẽ áp dụng CSS dựa trên rule có điểm độ ưu tiên (Specificity) cao nhất. Trong 10 rules trên, selector `p#demo.text.highlight` có điểm cao nhất là `1, 2, 1` (gồm 1 ID, 2 Classes, và 1 Element). Do điểm của nó vượt trội hoàn toàn so với các selector còn lại nên trình duyệt sẽ chọn màu đen để áp dụng cho phần tử, bất kể các rule khác nằm trước hay nằm sau nó trong file CSS.
+
+3. Screenshot kết quả
+
+![Kết quả hiển thị trên trình duyệt](screenshots/screenshot_result.png)
+
+4. Thay đổi thứ tự các rules và Giải thích
+
+- **Kết quả có thay đổi không?** KHÔNG. Kết quả hiển thị vẫn là màu đen.
+- **Giải thích:**
+  Trong CSS, quy tắc dòng chảy từ trên xuống (Source Order) chỉ có tác dụng khi và chỉ khi hai selector có **cùng điểm độ ưu tiên (Specificity Score)**. 
+  Vì rule `p#demo.text.highlight` có điểm độ ưu tiên cao nhất (`1, 2, 1`) trong tất cả các rule, nên dù mình có đảo nó lên đầu file, ở giữa file, hay giữ nguyên ở cuối file, trình duyệt vẫn ưu tiên chọn nó để render.
