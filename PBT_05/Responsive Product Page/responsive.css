@@ -1,0 +1,229 @@
+/* =======================================================
+   BASE STYLES (MOBILE-FIRST)
+   Áp dụng mặc định cho màn hình nhỏ (< 768px)
+   ======================================================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Font size cơ bản cho mobile nhỏ gọn */
+html {
+    font-family: Arial, sans-serif;
+    font-size: 14px; 
+    background-color: #f4f6f8;
+    color: #333;
+}
+
+/* Kỹ thuật Responsive cho ảnh: Không bao giờ tràn khung */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* HEADER */
+.header {
+    background-color: #1e293b;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem; /* rem phụ thuộc vào font-size của html */
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.hamburger {
+    font-size: 1.8rem;
+    cursor: pointer;
+    display: block; /* Hiện hamburger trên mobile */
+}
+
+.nav-menu {
+    display: none; /* Ẩn menu ngang trên mobile */
+}
+
+/* MAIN CONTENT */
+.main-content {
+    padding: 15px;
+    display: block; /* Xếp dọc toàn bộ trên mobile */
+}
+
+/* SIDEBAR & ADS BAR */
+.sidebar {
+    display: none; /* Ẩn sidebar trên mobile */
+}
+
+.ads-bar {
+    display: none; /* Ẩn cột quảng cáo trên mobile */
+}
+
+/* PRODUCT GRID */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr; /* Mobile: 1 cột */
+    gap: 15px;
+}
+
+.card {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.card-body {
+    padding: 15px;
+    text-align: center;
+}
+
+.card-body h4 {
+    margin-bottom: 8px;
+    font-size: 1.1rem;
+}
+
+.card-body .price {
+    color: #ef4444;
+    font-weight: bold;
+    font-size: 1.05rem;
+}
+
+/* FOOTER */
+.footer {
+    background-color: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+
+/* =======================================================
+   TABLET BREAKPOINT (>= 768px)
+   ======================================================= */
+@media (min-width: 768px) {
+    /* Tăng nhẹ font chữ cho dễ đọc trên tablet */
+    html {
+        font-size: 16px; 
+    }
+
+    /* Đổi Navigation */
+    .hamburger {
+        display: none; /* Ẩn hamburger */
+    }
+    
+    .nav-menu {
+        display: flex; /* Hiện menu ngang */
+        gap: 20px;
+    }
+
+    .nav-menu a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
+
+    /* Hiển thị Sidebar dạng ngang (Dropdown Filter) */
+    .sidebar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: #fff;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        border: 1px solid #e2e8f0;
+    }
+
+    .sidebar h3 {
+        margin-right: 20px;
+    }
+
+    .filter-options {
+        display: flex;
+        gap: 15px;
+        flex: 1;
+    }
+
+    .filter-options select {
+        padding: 8px;
+        border: 1px solid #cbd5e1;
+        border-radius: 4px;
+        flex: 1;
+    }
+
+    /* Product Grid: 2 cột */
+    .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+
+/* =======================================================
+   DESKTOP BREAKPOINT (>= 1024px)
+   ======================================================= */
+@media (min-width: 1024px) {
+    /* Tăng font chữ to hơn cho màn hình rộng */
+    html {
+        font-size: 18px; 
+    }
+
+    .main-content {
+        max-width: 1400px;
+        margin: 0 auto;
+        /* Áp dụng CSS Grid cho bố cục tổng thể */
+        display: grid;
+        grid-template-columns: 220px 1fr 200px; /* Sidebar | Grid | Ads */
+        gap: 25px;
+        align-items: start;
+    }
+
+    /* Cấu hình lại Sidebar thành dạng dọc cho cột trái */
+    .sidebar {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 0;
+    }
+
+    .sidebar h3 {
+        margin-bottom: 15px;
+        margin-right: 0;
+    }
+
+    .filter-options {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    /* Product Grid: 4 cột */
+    .product-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+
+    /* Hiển thị cột Ads bên phải */
+    .ads-bar {
+        display: block;
+        background-color: #fef3c7;
+        border: 1px dashed #f59e0b;
+        padding: 20px;
+        border-radius: 8px;
+        text-align: center;
+        color: #b45309;
+        font-weight: bold;
+        height: 100%;
+        min-height: 400px;
+    }
+}
