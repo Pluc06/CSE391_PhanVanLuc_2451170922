@@ -1,0 +1,20 @@
+// Mixin 1: Quản lý Breakpoints cực gọn (Mobile-first)
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == tablet {
+    @media (min-width: $breakpoint-tablet) { @content; }
+  } @else if $breakpoint == desktop {
+    @media (min-width: $breakpoint-desktop) { @content; }
+  }
+}
+
+// Mixin 2: Căn đều 2 bên bằng Flexbox (Dùng cho Header, Sidebar ngang)
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Mixin 3: Đổ bóng mặc định cho Card
+@mixin box-shadow-base {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}

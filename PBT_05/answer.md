@@ -164,3 +164,24 @@ SCSS là một "ngôn ngữ tiền xử lý" (Preprocessor). Nó sinh ra để c
 Chúng ta cần một bước gọi là Biên dịch (Compilation/Transpiling).
 Hiểu đơn giản là cần một công cụ trung gian (như một phiên dịch viên) để đọc file .scss của tụi mình, giải mã các biến, bung các thẻ lồng nhau ra, và dịch nó về thành file .css thuần túy dài ngoằng, đúng chuẩn mực để trình duyệt có thể đọc hiểu.
 
+# PHẦN B — THỰC HÀNH CODE
+## Bài B3 (20đ) — SCSS Refactor
+
+1. Lệnh biên dịch SCSS → CSS (Dùng Terminal/Command Line)
+
+Nếu bạn đã cài đặt Sass trên máy (thông qua Node.js/npm), bạn mở Terminal lên và chạy lệnh sau:
+
+```bash
+sass scss/style.scss style.css
+```
+
+**Giải thích:** * `sass`: Gọi trình biên dịch Sass.
+* `scss/style.scss`: Đường dẫn tới file SCSS chính cần dịch.
+* `style.css`: Tên file CSS đầu ra (trình duyệt sẽ đọc file này).
+
+Để Sass tự động dịch mỗi khi bạn bấm lưu file (Ctrl+S) mà không cần gõ lại lệnh, thêm cờ `--watch`:
+```bash
+sass --watch scss/style.scss style.css
+```
+
+---

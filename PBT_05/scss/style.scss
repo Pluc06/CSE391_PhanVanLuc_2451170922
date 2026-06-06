@@ -1,0 +1,4 @@
+// Thứ tự import rất quan trọng: Biến và Mixin phải đứng trước
+@import 'variables';
+@import 'mixins';
+@import 'components';
