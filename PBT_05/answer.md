@@ -185,3 +185,147 @@ sass --watch scss/style.scss style.css
 ```
 
 ---
+
+# PHẦN C — PHÂN TÍCH (20 điểm)
+## Câu C1 (10đ) — Phân tích trang web thực
+
+![alt text](screenshot/C1-desktop.png)
+![alt text](screenshot/C1-tablet.png)
+![alt text](screenshot/C1-mobile.png)
+
+1. Navigation (Thanh điều hướng) thay đổi thế nào?
+
+Desktop (1440px): Giao diện đầy đủ nhất. Sidebar (menu điều hướng bên trái) đang được mở rộng, hiển thị rõ tên các mục (Trang chủ, Shorts, Kênh đăng ký...). Trên Header có thanh search (tìm kiếm) dạng ô nhập text rất dài.
+
+Tablet (768px): Sidebar bên trái đã bị ẩn đi hoàn toàn để nhường chỗ cho nội dung video, thu gọn lại thành nút Hamburger (icon 3 gạch ngang) ở góc trái trên cùng.
+
+Mobile (375px): Header tối giản đi rất nhiều. Khung nhập text tìm kiếm dài sọc đã biến mất, thay bằng một icon kính lúp nhỏ. Thanh menu chứa các filter tag (Tất cả, Âm nhạc...) bị bóp chiều ngang lại thành dạng scroll (cuộn ngang).
+
+2. Lưới content (Grid) thay đổi mấy cột?
+Nhìn vào danh sách video hiển thị, ta thấy rất rõ sự thay đổi số lượng cột lưới:
+
+Desktop (1440px): Lưới chia làm 4 cột video rộng rãi.
+
+Tablet (768px): Lưới giảm xuống còn 2 cột video lớn.
+
+Mobile (375px): Lưới chỉ còn 1 cột duy nhất, mỗi video tràn viền chiếm trọn 100% chiều ngang màn hình để dễ xem nhất trên điện thoại.
+
+3. Elements nào bị ẩn trên mobile?
+
+Thanh Sidebar Menu bên trái (bị ẩn đi, chỉ khi bấm vào hamburger mới trượt ra).
+
+Ô nhập liệu (input text field) của thanh tìm kiếm ở giữa màn hình.
+
+Chữ "+ Tạo" trên góc phải màn hình đã bị ẩn đi, chỉ giữ lại mỗi icon dấu cộng.
+
+4. Font size có thay đổi không?
+
+Có thay đổi. Trên giao diện mobile (375px), font chữ của tiêu đề video và tên kênh trông được thu nhỏ hơn một chút so với bản Desktop. Mục đích là để hạn chế việc chữ bị rớt xuống quá nhiều dòng gây tốn diện tích màn hình. Kích thước chữ ở các nút filter (Tất cả, Âm nhạc...) cũng được làm nhỏ lại.
+
+## Câu C2 (10đ) — Thiết kế Responsive Strategy
+
+1. Phân tích & Vẽ Wireframe (Sơ đồ bố cục)
+
+* Giao diện Mobile (Dưới 768px)
+
+Sơ đồ từ trên xuống: Header -> Hero Image -> Form Đặt bàn -> Grid 6 ảnh món ăn -> Bản đồ Maps -> Footer.
+
+Câu hỏi:
+
+Những gì bị ẩn? Chữ "Số điện thoại" hoặc giờ mở cửa trên Header sẽ bị ẩn đi, chỉ giữ lại Logo và một cái Icon điện thoại (bấm vào là gọi luôn). Hero image có thể sẽ bị cắt gọn lại (crop) để không chiếm quá nhiều chiều cao màn hình.
+
+Form nằm đâu? Form nằm ngay dưới Hero Image, chiếm 100% chiều ngang (1 cột duy nhất). Lý do: Khách vào bằng điện thoại thường đang vội và muốn đặt bàn ngay, đẩy Form lên đầu sẽ giúp họ không phải cuộn mỏi tay qua 6 cái ảnh mới thấy chỗ đặt.
+
+* Giao diện Tablet (Từ 768px đến dưới 1024px)
+
+Sơ đồ từ trên xuống: Header -> Hero Image -> Grid 6 ảnh món ăn -> Khu vực Đặt bàn & Maps -> Footer.
+
+Câu hỏi:
+
+Grid ảnh mấy cột? Sẽ là 3 cột (3 cột x 2 hàng = 6 ảnh). Kích thước Tablet đủ rộng để xem 3 ảnh một hàng mà không bị quá nhỏ.
+
+Bản đồ nằm đâu? Bản đồ nằm ngang hàng (bên cạnh) Form đặt bàn. Lúc này mình sẽ dùng Grid chia khu vực dưới cùng thành 2 cột: Cột trái là Form đặt bàn, cột phải là Google Maps nhúng vào (Tỉ lệ 1:1) nhìn cực kỳ cân đối.
+
+* Giao diện Desktop (Từ 1024px trở lên)
+
+Sơ đồ bố cục tổng thể: Header -> Cụm Nội Dung (chia làm 2 phần trái/phải) -> Footer.
+
+Câu hỏi:
+
+Layout bao nhiêu cột? Khu vực thân trang (chứa Hero, Grid, Form, Map) sẽ được chia làm 2 cột lớn theo tỉ lệ khoảng 7:3 (hoặc 8:4).
+
+Sidebar có không? Có! Cột nhỏ bên phải (30% width) sẽ được dùng làm Sidebar chứa Form đặt bàn. Mình sẽ set cho Form này thành dạng sticky (dính chặt trên màn hình khi cuộn). Cột lớn bên trái (70% width) sẽ chứa Hero Image, Grid 6 ảnh món ăn (vẫn 3 cột ảnh) và Google Maps nằm ngay dưới. Cách chia này giúp người dùng dù có cuộn xuống xem món ăn hay bản đồ thì Form đặt bàn vẫn luôn "đập vào mắt" ở bên phải.
+
+* CSS skeleton
+/* =========================================
+   1. MOBILE FIRST (Mặc định cho màn hình nhỏ)
+   ========================================= */
+/* Bố cục tổng từ trên xuống dưới dạng 1 cột */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+header {
+  /* Logo trái, Icon điện thoại phải */
+  display: flex;
+  justify-content: space-between;
+}
+
+.food-grid {
+  display: grid;
+  /* Mobile để 2 cột ảnh nhìn cho rõ, hoặc 1 cột tùy ý */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 10px;
+}
+
+.booking-and-map {
+  display: grid;
+  grid-template-columns: 1fr; /* Form trên, Map dưới */
+  gap: 20px;
+}
+
+/* =========================================
+   2. TABLET (Từ 768px trở lên)
+   ========================================= */
+@media (min-width: 768px) {
+  
+  .food-grid {
+    /* Mở rộng lên 3 cột cho 6 ảnh (3x2) */
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .booking-and-map {
+    /* Đẩy Form sang trái, Map sang phải (2 cột bằng nhau) */
+    grid-template-columns: 1fr 1fr; 
+  }
+}
+
+/* =========================================
+   3. DESKTOP (Từ 1024px trở lên)
+   ========================================= */
+@media (min-width: 1024px) {
+  
+  /* Thay đổi bố cục cả trang thành có Sidebar */
+  .wrapper {
+    grid-template-columns: 2fr 1fr; /* Trái 2 phần, Phải 1 phần */
+    /* Cột 1: Header, Hero, Grid, Map */
+    /* Cột 2: Form đặt bàn (Sidebar) */
+  }
+
+  /* Định vị các thành phần vào cột lưới (Ví dụ) */
+  header, footer {
+    grid-column: 1 / -1; /* Header và Footer vẫn full chiều ngang */
+  }
+
+  .main-content {
+    grid-column: 1 / 2; /* Chứa Hero, Grid, Map ở cột trái */
+  }
+
+  .sidebar-form {
+    grid-column: 2 / 3; /* Form đặt bàn nằm ở cột phải */
+    position: sticky;
+    top: 20px; /* Cuộn trang form vẫn giữ nguyên vị trí */
+  }
+}
