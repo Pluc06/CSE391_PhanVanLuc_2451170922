@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang E-Commerce - Grid Layout</title>
+    <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+
+    <!-- CONTAINER CHÍNH SỬ DỤNG CSS GRID -->
+    <div class="page-layout">
+        
+        <!-- HEADER (Full width) -->
+        <header class="header">
+            <div class="header-logo">TechStore</div>
+            <div class="header-search">
+                <input type="text" placeholder="Tìm sản phẩm công nghệ...">
+            </div>
+            <div class="header-user">Giỏ hàng (0)</div>
+        </header>
+
+        <!-- HERO BANNER (Full width - Có chứa sản phẩm nổi bật nâng cao) -->
+        <section class="hero">
+            <!-- Sản phẩm nổi bật chiếm 2 cột (Bonus nâng cao) -->
+            <div class="featured-product">
+                <div class="badge-featured">MỚI RA MẮT</div>
+                <h2>Siêu phẩm Laptop Gaming Pro 2026</h2>
+                <p>Hiệu năng hủy diệt với chip AI thế hệ mới, màn hình 240Hz siêu mượt.</p>
+                <span class="featured-price">39.990.000 đ</span>
+                <button class="btn-explore">Xem ngay</button>
+            </div>
+            <!-- Phần text/hình ảnh phụ của banner chiếm 1 cột còn lại -->
+            <div class="hero-promo">
+                <h3>Khuyến mãi sập sàn</h3>
+                <p>Nhập mã <strong>TECH2026</strong> giảm ngay 10% cho đơn hàng đầu tiên.</p>
+            </div>
+        </section>
+
+        <!-- SIDEBAR (Cột trái: 200px) -->
+        <aside class="sidebar">
+            <h3>Bộ lọc sản phẩm</h3>
+            
+            <div class="filter-group">
+                <h4>Danh mục</h4>
+                <label><input type="checkbox" checked> Tất cả</label>
+                <label><input type="checkbox"> Điện thoại</label>
+                <label><input type="checkbox"> Laptop</label>
+                <label><input type="checkbox"> Máy tính bảng</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Khoảng giá</h4>
+                <label><input type="checkbox"> Dưới 5 triệu</label>
+                <label><input type="checkbox"> 5 - 15 triệu</label>
+                <label><input type="checkbox"> Trên 15 triệu</label>
+            </div>
+
+            <div class="filter-group">
+                <h4>Thương hiệu</h4>
+                <label><input type="checkbox"> Apple</label>
+                <label><input type="checkbox"> Samsung</label>
+                <label><input type="checkbox"> Asus</label>
+            </div>
+        </aside>
+
+        <!-- MAIN CONTENT (Cột giữa: co giãn linh hoạt 1fr) -->
+        <main class="main-content">
+            <h3 class="section-title">Sản phẩm mới nhất</h3>
+            
+            <!-- Grid con 3 cột cho các product cards -->
+            <div class="product-grid">
+                <!-- Card 1 -->
+                <div class="card">
+                    <div class="card-img">Ảnh Điện Thoại A</div>
+                    <div class="card-body">
+                        <h4>Smartphone X Pro</h4>
+                        <p class="price">18.490.000 đ</p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="card">
+                    <div class="card-img">Ảnh Laptop B</div>
+                    <div class="card-body">
+                        <h4>Laptop Văn Phòng S14</h4>
+                        <p class="price">14.200.000 đ</p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card">
+                    <div class="card-img">Ảnh Máy Tính Bảng C</div>
+                    <div class="card-body">
+                        <h4>Tablet Giải Trí 10 inch</h4>
+                        <p class="price">6.800.000 đ</p>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="card">
+                    <div class="card-img">Ảnh Tai Nghe D</div>
+                    <div class="card-body">
+                        <h4>Tai Nghe Không Dây NoiseCancel</h4>
+                        <p class="price">2.500.000 đ</p>
+                    </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="card">
+                    <div class="card-img">Ảnh Đồng Hồ E</div>
+                    <div class="card-body">
+                        <h4>Smartwatch Thể Thao Gen 3</h4>
+                        <p class="price">4.190.000 đ</p>
+                    </div>
+                </div>
+
+                <!-- Card 6 -->
+                <div class="card">
+                    <div class="card-img">Ảnh Phụ Kiện F</div>
+                    <div class="card-body">
+                        <h4>Sạc Dự Phòng Siêu Nhanh 20000mAh</h4>
+                        <p class="price">850.000 đ</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- ADS (Cột phải: 200px) -->
+        <aside class="ads">
+            <div class="ads-banner">
+                <p>BANNER QUẢNG CÁO</p>
+                <small>Giảm giá 50% phụ kiện khi mua kèm máy tính dòng Pro!</small>
+            </div>
+            <div class="ads-banner-sub">
+                <p>QC: Trả góp 0%</p>
+            </div>
+        </aside>
+
+        <!-- FOOTER (Full width) -->
+        <footer class="footer">
+            <p>&copy; 2026 TechStore - Bài tập Thực hành CSS Grid Layout - Sinh viên CNTT mới bắt đầu</p>
+        </footer>
+
+    </div>
+
+</body>
+</html>

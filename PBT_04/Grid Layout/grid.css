@@ -1,0 +1,288 @@
+/* Reset CSS cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    padding: 10px;
+}
+
+/* ===================================================
+   LAYOUT CHÍNH DÙNG CSS GRID (Kèm cấu trúc nâng cao)
+   =================================================== */
+.page-layout {
+    display: grid;
+    /* Cột: Trái cố định 200px, giữa co giãn linh hoạt dùng minmax, phải cố định 200px */
+    grid-template-columns: 200px minmax(400px, 1fr) 200px;
+    
+    /* Nâng cao: Định nghĩa các vùng bằng grid-template-areas */
+    grid-template-areas: 
+        "header  header  header"
+        "hero    hero    hero"
+        "sidebar main    ads"
+        "footer  footer  footer";
+    
+    gap: 15px; /* Khoảng cách giữa các vùng */
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* Gán các phần tử vào đúng khu vực area và đảm bảo span full width */
+.header {
+    grid-area: header;
+    grid-column: 1 / -1; /* Ép span full width từ cột 1 đến cột cuối */
+    background-color: #1e293b;
+    color: #fff;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+}
+
+.header-logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+.header-search input {
+    width: 300px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+}
+
+/* HERO BANNER (Full width) */
+.hero {
+    grid-area: hero;
+    grid-column: 1 / -1; /* Ép span full width */
+    background-color: #0f172a;
+    color: #fff;
+    border-radius: 6px;
+    padding: 25px;
+    
+    /* Bản thân vùng Hero banner cũng chia Grid để chứa card nổi bật */
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Card sản phẩm nổi bật dùng nâng cao: chiếm 2 cột */
+.featured-product {
+    grid-column: span 2; /* Chiếm 2 phần ba diện tích của banner */
+    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    padding: 25px;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.badge-featured {
+    background-color: #ef4444;
+    color: white;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 3px;
+    width: fit-content;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.featured-product h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.featured-product p {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.featured-price {
+    font-size: 20px;
+    font-weight: bold;
+    color: #fde047;
+    margin-bottom: 15px;
+}
+
+.btn-explore {
+    background-color: #ffffff;
+    color: #1d4ed8;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    width: fit-content;
+}
+
+/* Phần ô phụ của banner chiếm 1 cột còn lại */
+.hero-promo {
+    background-color: #1e293b;
+    padding: 25px;
+    border-radius: 6px;
+    border: 1px dashed #38bdf8;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-promo h3 {
+    color: #38bdf8;
+    margin-bottom: 10px;
+}
+
+/* SIDEBAR (Filter giả lập) */
+.sidebar {
+    grid-area: sidebar;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar h3 {
+    font-size: 16px;
+    border-bottom: 2px solid #e2e8f0;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+}
+
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group h4 {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 8px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 13px;
+    margin-bottom: 6px;
+    cursor: pointer;
+}
+
+/* MAIN CONTENT */
+.main-content {
+    grid-area: main;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.sidebar h3, .section-title {
+    color: #0f172a;
+}
+
+.section-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* Grid con 3 cột cho danh sách sản phẩm bên trong Main */
+.product-grid {
+    display: grid;
+    /* Dùng minmax đảm bảo tỷ lệ co giãn hợp lý khi thay đổi kích thước */
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+    gap: 15px;
+}
+
+/* Định dạng thẻ Product Card đơn giản */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #f1f5f9;
+    border-radius: 6px;
+    padding: 12px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+}
+
+.card-img {
+    height: 120px;
+    background-color: #f8fafc;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #94a3b8;
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.card-body h4 {
+    font-size: 14px;
+    color: #334155;
+    margin-bottom: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis; /* Cắt ngắn nếu tên quá dài */
+}
+
+.card-body .price {
+    font-size: 13px;
+    color: #dc2626;
+    font-weight: bold;
+}
+
+/* ADS (Mục quảng cáo lề phải) */
+.ads {
+    grid-area: ads;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ads-banner {
+    background-color: #fef3c7;
+    border: 1px solid #fcd34d;
+    padding: 20px 10px;
+    text-align: center;
+    border-radius: 6px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #92400e;
+    font-weight: bold;
+}
+
+.ads-banner small {
+    margin-top: 10px;
+    font-weight: normal;
+    color: #b45309;
+}
+
+.ads-banner-sub {
+    background-color: #dcfce7;
+    border: 1px solid #86efac;
+    padding: 15px;
+    text-align: center;
+    border-radius: 6px;
+    color: #166534;
+    font-size: 13px;
+}
+
+/* FOOTER (Full width) */
+.footer {
+    grid-area: footer;
+    grid-column: 1 / -1; /* Ép span full width */
+    background-color: #1e293b;
+    color: #94a3b8;
+    text-align: center;
+    padding: 15px;
+    font-size: 13px;
+    border-radius: 6px;
+}
