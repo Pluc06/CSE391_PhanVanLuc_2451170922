@@ -1,0 +1,178 @@
+/* Reset định dạng mặc định */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f9fa;
+    color: #333;
+    padding-bottom: 50px;
+}
+
+/* ==========================================
+   PHẦN 1 — NAVBAR (Sử dụng Flexbox)
+   ========================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between; /* Đẩy Logo qua trái, Menu ở giữa, Auth qua phải */
+    align-items: center;            /* Căn giữa hoàn hảo theo chiều dọc */
+    background-color: #ffffff;
+    padding: 15px 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2c3e50;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 30px; /* Các item cách đều nhau */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #555555;
+    font-weight: 500;
+    padding: 5px 0;
+    transition: all 0.2s ease;
+}
+
+/* Hiệu ứng khi hover: đổi màu + underline */
+.nav-links a:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px; /* Các nút cách đều nhau */
+}
+
+.auth-buttons a {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.btn-login {
+    color: #555555;
+}
+
+.btn-login:hover {
+    color: #3498db;
+    text-decoration: underline;
+}
+
+.btn-register {
+    background-color: #3498db;
+    color: #ffffff;
+}
+
+.btn-register:hover {
+    background-color: #2980b9;
+}
+
+
+/* ==========================================
+   PHẦN 2 — PRODUCT CARDS GRID
+   ========================================== */
+.main-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 15px;
+}
+
+.main-container h2 {
+    margin-bottom: 25px;
+    color: #2c3e50;
+}
+
+/* Lưới sản phẩm dùng Flexbox */
+.product-container {
+    display: flex;
+    flex-wrap: wrap;       /* Cho phép xuống hàng khi đủ 4 cards */
+    justify-content: space-between; /* Giúp căn trải đều hàng */
+    row-gap: 25px;         /* Khoảng cách giữa các hàng */
+}
+
+/* Thiết lập kích thước mỗi card theo đúng công thức yêu cầu */
+.product-card {
+    flex: 0 0 calc(25% - 20px); /* 4 cột, có trừ đi phần khoảng cách gap */
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    border: 1px solid #eef2f3;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    
+    /* Mỗi card bên trong cũng dùng flex (column direction) */
+    display: flex;
+    flex-direction: column;
+}
+
+/* Hiệu ứng khi hover card: dịch chuyển nhẹ lên và tăng bóng đổ */
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+}
+
+/* Ảnh ở trên */
+.product-img {
+    height: 180px;
+    background-color: #eaeff2;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Tên + giá ở giữa */
+.product-info {
+    margin-bottom: 15px;
+}
+
+.product-info h3 {
+    font-size: 16px;
+    color: #333333;
+    margin-bottom: 8px;
+    font-weight: 600;
+    line-height: 1.4;
+}
+
+.product-info .price {
+    font-size: 15px;
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+/* Nút "Mua" ở dưới, luôn dính đáy card */
+.btn-buy {
+    margin-top: auto; /* Thần chú để nút luôn dính chặt vào đáy card bất kể tên sản phẩm dài ngắn */
+    background-color: #2ecc71;
+    color: #ffffff;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    width: 100%;
+}
+
+.btn-buy:hover {
+    background-color: #27ae60;
