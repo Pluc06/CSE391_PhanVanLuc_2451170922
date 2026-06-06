@@ -1,0 +1,175 @@
+/* Reset cơ bản */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    padding: 50px 20px;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 40px;
+    color: #333;
+}
+
+/* Layout Container */
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+
+/* ==========================================
+   1. Card hover effect
+   ========================================== */
+.product-card {
+    background-color: #ffffff;
+    width: 280px;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    cursor: pointer;
+    
+    /* Áp dụng transition cho mọi thay đổi (all) trong 0.3s với hiệu ứng mượt (ease) */
+    transition: all 0.3s ease;
+}
+
+/* Khi đưa chuột vào card: Nhấc lên 8px và tăng bóng đổ */
+.product-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+
+/* ==========================================
+   3. Image zoom effect
+   ========================================== */
+.img-container {
+    width: 100%;
+    border-radius: 6px;
+    /* Rất quan trọng: Giấu phần ảnh bị phóng to tràn ra ngoài viền của container */
+    overflow: hidden; 
+}
+
+.img-container img {
+    width: 100%;
+    display: block;
+    /* Thời gian chuyển động của ảnh (có thể để dài hơn card một chút cho đẹp) */
+    transition: transform 0.4s ease;
+}
+
+/* Khi hover vào THE CARD, thì cái ẢNH bên trong sẽ bị zoom lên 1.1 lần */
+.product-card:hover .img-container img {
+    transform: scale(1.1);
+}
+
+
+/* Info Typography */
+.card-info {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.card-info h3 {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.price {
+    font-weight: bold;
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+
+/* ==========================================
+   2. Button hover
+   ========================================== */
+.btn-buy {
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    
+    /* Chuyển đổi mượt mà cho màu nền, chữ và kích thước */
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+/* Khi hover vào nút */
+.btn-buy:hover {
+    background-color: #2980b9;
+    color: #f1f1f1;
+    transform: scale(1.05); /* Scale nhẹ lên 5% */
+}
+
+
+/* ==========================================
+   4. Loading spinner
+   ========================================== */
+.spinner-container {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.spinner-container p {
+    margin-bottom: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    /* Tạo hình tròn border */
+    border: 5px solid #e2e8f0; 
+    border-top: 5px solid #3498db; /* Một cạnh có màu đậm để tạo hiệu ứng quay */
+    border-radius: 50%;
+    margin: 0 auto;
+    
+    /* Gắn animation spin: 1s, tốc độ đều (linear), lặp vô hạn (infinite) */
+    animation: spin 1s linear infinite;
+}
+
+/* Định nghĩa keyframes cho spinner */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+
+/* ==========================================
+   5. Fade-in (CSS only)
+   ========================================== */
+.fade-in-element {
+    /* Ban đầu ẩn nó đi */
+    opacity: 0; 
+    /* Gắn animation fadeIn. forwards giúp phần tử giữ nguyên trạng thái kết thúc (hiện) */
+    animation: fadeIn 0.8s ease forwards;
+}
+
+/* Định nghĩa keyframes cho quá trình hiện ra */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
