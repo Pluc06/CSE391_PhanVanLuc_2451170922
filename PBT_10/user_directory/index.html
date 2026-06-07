@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Directory CRUD</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Quản lý Người Dùng</h1>
+        </header>
+
+        <section class="controls-section">
+            <form id="userForm" class="user-form">
+                <input type="hidden" id="userId">
+                <div class="form-group">
+                    <input type="text" id="nameInput" placeholder="Họ và tên..." required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="emailInput" placeholder="Email..." required>
+                </div>
+                <button type="submit" id="submitBtn" class="btn-primary">Thêm User</button>
+                <button type="button" id="cancelBtn" class="btn-secondary hidden">Hủy</button>
+            </form>
+
+            <div class="search-box">
+                <input type="text" id="searchInput" placeholder="Tìm kiếm theo tên hoặc email...">
+            </div>
+        </section>
+
+        <section id="userList" class="user-grid">
+            </section>
+    </div>
+
+    <div id="toastContainer" class="toast-container"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
