@@ -48,3 +48,47 @@ Ví dụ: Màn laptop nó sẽ cố định rộng 960px hoặc 1140px. Khi bạ
 
 .container-md (Hộp lai tạp): Đây là loại container thông minh. Ở những màn hình nhỏ hơn mốc md (dưới 768px - tức là Mobile), nó sẽ hoạt động y chang .container-fluid (chiếm full 100% width để tận dụng tối đa diện tích màn hình điện thoại). Nhưng ngay khi màn hình bự hơn 768px, nó sẽ "biến hình" trở lại thành .container bình thường (có lề 2 bên, nội dung gom vào giữa).
 
+# PHẦN C — PHÂN TÍCH (20 điểm)
+## Câu C1 (10đ) — Tùy biến Bootstrap
+1. Quy trình đổi màu $primary bằng SASS
+Công cụ cần chuẩn bị:
+Code Editor: VS Code (Visual Studio Code).
+Môi trường: Đã cài đặt Node.js và npm (để tải mã nguồn Bootstrap về máy).
+Trình biên dịch SASS: Có thể cài trực tiếp bằng dòng lệnh (Dart Sass) hoặc nhàn nhất là cài extension Live Sass Compiler ngay trong VS Code.
+
+File cần Modify (Chỉnh sửa) và Quy trình:
+
+Bước 1: Khai báo biến màu mới ở ngay đầu file mới tạo có đuôi .scss:
+
+(Ghi đè biến của Bootstrap)
+$primary: #E63946; 
+
+Bước 2: Import toàn bộ mã nguồn SASS của Bootstrap vào NGAY BÊN DƯỚI biến vừa tạo.
+
+(Nhúng file SCSS gốc của Bootstrap)
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+Bước 3: Bật Live Sass Compiler lên để nó biên dịch file custom.scss này thành một file custom.css thông thường. Cuối cùng, nhúng file custom.css đó vào thẻ <link> trong HTML là xong! Toàn bộ giao diện sẽ tự động chuyển sang màu đỏ #E63946.
+
+2. Tại sao KHÔNG nên override trực tiếp .btn-primary { background: red; } mà nên dùng SASS variables?
+Thứ nhất: Tính đồng bộ của hệ thống (Consistency)
+Biến $primary trong Bootstrap không chỉ được dùng cho mỗi nút bấm (.btn-primary). Nó được xài ở hàng chục component khác nhau: chữ (text-primary), nền (bg-primary), viền (border-primary), thông báo (alert-primary), badges, v.v.
+    Nếu override bằng CSS thuần: Cậu sẽ phải hì hục ngồi viết đè hàng chục class khác nhau cực kỳ mất thời gian và kiểu gì cũng sót.
+    Nếu dùng SASS: Chỉ cần đổi 1 dòng code duy nhất $primary: #E63946;, toàn bộ các class liên quan đến màu primary trên toàn website sẽ tự động cập nhật đồng bộ.
+
+Thứ hai: Mất đi các trạng thái tự động (Hover / Active / Focus)
+Khi khai báo màu $primary bằng SASS, Bootstrap có các hàm (functions) tự động tính toán ra màu đậm hơn (darken) cho hiệu ứng hover, hoặc tạo viền mờ mờ (box-shadow) khi focus.
+    Nếu override CSS thuần: Cậu gán cứng background: red, nút bấm đó sẽ biến thành một cục màu đỏ vô hồn. Khi di chuột vào không có hiệu ứng gì, trừ khi cậu lại phải gõ thêm CSS thủ công cho .btn-primary:hover, .btn-primary:active,... cực kỳ cực.
+
+Thứ ba: Phình to dung lượng file (Code Bloat)
+Nếu dùng CDN mặc định và viết CSS đè, trình duyệt của người dùng sẽ phải tải phần CSS màu xanh (mặc định của Bootstrap) trước, sau đó lại phải đọc thêm phần CSS màu đỏ của cậu để ghi đè lên. Việc này sinh ra code thừa. Trong khi dùng SASS, máy tính sẽ biên dịch thẳng ra một file CSS màu đỏ ngay từ đầu, code cực kỳ sạch và tối ưu hiệu suất.
+
+## Câu C2 (10đ) — So sánh
+Từ bài Responsive Product Page(Bài B1-PBT_05)
+| Tiêu chí | Viết CSS Thuần (Code mẫu > 160 dòng) | Dùng Bootstrap 5 |
+| :--- | :--- | :--- |
+| **Số dòng CSS cần viết** | **~160 - 170 dòng.** Phải tự setup margin, chia grid, ẩn/hiện element qua từng `@media`. | **Gần như 0 dòng.** Chỉ cần nhúng các class có sẵn (như `.card`, `.col-md-6`) thẳng vào HTML. |
+| **Thời gian phát triển** | **Khá lâu.** Tốn thời gian căn chỉnh từng pixel, tính toán padding và test responsive liên tục. | **Siêu tốc độ.** Các mốc responsive đã được test chuẩn, chỉ cần lắp ráp như Lego (tiết kiệm 70-80% thời gian). |
+| **Khả năng tùy biến** | **Cao (10/10).** Làm chủ 100% giao diện, dễ dàng tạo style độc lạ, bóp méo layout tùy ý. | **Thấp.** Giao diện dễ bị "công nghiệp", rập khuôn. Muốn tùy chỉnh sâu phải đè CSS thủ công hoặc dùng SASS. |
+| **Khi nào NÊN dùng?** | Khi làm Portfolio cá nhân, trang quảng bá thương hiệu cần giao diện độc lạ, hoặc khi muốn rèn luyện kỹ năng nền tảng. | Khi chạy deadline gấp, làm Admin Dashboard (hệ thống quản lý nội bộ), hoặc khi làm dự án nhóm đông người. |
+| **Khi nào KHÔNG NÊN?** | Khi cần làm nhanh bản demo (Prototype) hoặc khi làm các dự án nội bộ ưu tiên tính năng hơn giao diện. | Khi thiết kế có bố cục dị biệt, các khối đè lên nhau phức tạp hoặc khi muốn thể hiện cá tính riêng (như trang Portfolio). |
