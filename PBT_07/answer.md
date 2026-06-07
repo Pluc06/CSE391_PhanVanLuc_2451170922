@@ -133,3 +133,37 @@ var html = `
 </div>
 `;
 
+# PHẦN C — SUY LUẬN (20 điểm)
+## Câu C1 (10đ) — Debug JavaScript
+
+1. Liệt kê lỗi + giải thích + cách sửa:
+
+Lỗi 1: Sai toán tử trong lệnh if (Lỗi Logic cực nặng)
+Code sai: if (giaSauGiam = 0)
+Giải thích: Ở đây dùng dấu = (toán tử gán) thay vì === (toán tử so sánh). Việc này khiến máy tính gán luôn giá trị 0 cho biến giaSauGiam, biến điều kiện này thành false (vì 0 là Falsy) nên không bao giờ in ra chữ "Sản phẩm miễn phí!". Kéo theo đó, hàm cũng luôn luôn trả về 0 bất kể giá gốc là bao nhiêu.
+Cách sửa: Đổi thành so sánh nghiêm ngặt if (giaSauGiam === 0).
+
+Lỗi 2: Truyền sai kiểu dữ liệu tham số
+Code sai: const gia = tinhGiaGiamGia("100000", 20)
+Giải thích: Giá bán phải là một số (Number), nhưng ở đây lại truyền vào chuỗi (String) "100000". Dù JavaScript có cơ chế tự ép kiểu ngầm định khi tính toán, nhưng đây là một thói quen code rất xấu, rất dễ sinh ra bug (ví dụ như nếu đem đi cộng + thì nó sẽ nối chuỗi thay vì cộng số).
+Cách sửa: Bỏ dấu ngoặc kép, truyền đúng số: tinhGiaGiamGia(100000, 20).
+
+Lỗi 3: Không bắt lỗi đầu vào (Validation)
+Code sai: Hàm nhảy thẳng vào kiểm tra < 0 và tính toán mà không xem đầu vào có bị rỗng hay nhập bậy bạ chữ cái vào không.
+Giải thích: Nếu vô tình gọi hàm kiểu tinhGiaGiamGia("abc", "xyz"), máy tính vẫn chạy và cho ra giá trị NaN (Not a Number), làm hư hết cả dữ liệu phía sau.
+Cách sửa: Thêm một dòng if dùng typeof và isNaN để chặn ngay từ đầu.
+
+Lỗi 4: Xử lý kết quả báo lỗi lộn xộn (Lỗi UI/UX)
+Code sai: const gia2 = tinhGiaGiamGia(50000, 110) -> Hàm này sẽ trả về chuỗi "Phần trăm giảm không hợp lệ". Sau đó dòng dưới lại dùng console.log("Giá: " + gia2).
+Giải thích: Thay vì báo lỗi, Console sẽ in ra một dòng rất ngớ ngẩn: "Giá: Phần trăm giảm không hợp lệ". Việc trộn lẫn giá trị trả về (lúc thì Number, lúc thì String báo lỗi) khiến người gọi hàm không biết đường nào mà xử lý.
+Cách sửa: Cần kiểm tra kiểu dữ liệu của gia2 trước khi in, hoặc tốt nhất là đổi cách báo lỗi trong hàm.
+
+Lỗi 5: Khai báo biến lộn xộn (var vs let) và lười chấm phẩy
+Code sai: Lúc thì dùng var giamGia, lúc lại dùng let giaSauGiam, và thiếu chấm phẩy ; ở cuối các dòng lệnh.
+Giải thích: JS hiện đại không khuyến khích dùng var nữa vì nó dễ gây lỗi rò rỉ biến. Hơn nữa, cả giamGia và giaSauGiam sau khi gán đều không thay đổi giá trị nên dùng const là chuẩn nhất. Việc thiếu chấm phẩy cũng có thể gây ra lỗi gộp dòng (ASI) không đáng có.
+Cách sửa: Thay var và let bằng const, bổ sung ; đầy đủ.
+
+Lỗi 6: Lỗi "ẩn" kinh điển với vòng lặp for chứa setTimeout
+Code sai: for (var i = 0; i < 5; i++)
+Giải thích tại sao lỗi: Nếu chạy code, bạn sẽ không nhận được kết quả Item 0, 1, 2, 3, 4 mà sẽ thấy chữ "Item 5" bị in ra 5 lần liên tục. Nguyên nhân là vì biến var KHÔNG CÓ "phạm vi khối" (block scope) mà chỉ có phạm vi toàn cục hoặc hàm. Vòng lặp for chạy cái vèo rất nhanh, đẩy giá trị của i lên 5 rồi dừng lại. Tận 1 giây sau (1000ms), 5 cái hàm bên trong setTimeout mới bắt đầu chạy và đi lấy giá trị i. Khổ nỗi, cả 5 hàm lúc này đều nhìn vào CÙNG MỘT biến i duy nhất, mà lúc đó i đã bằng 5 rồi.
+Cách sửa: Đổi var i = 0 thành let i = 0. Thằng let rất thông minh, nó có cơ chế "block scope". Ở mỗi vòng lặp, let sẽ tự động tạo ra một biến i mới riêng biệt và "đóng băng" giá trị tại vòng lặp đó cất cho hàm setTimeout. Nhờ vậy, kết quả sẽ in ra chuẩn xác.
