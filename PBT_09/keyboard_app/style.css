@@ -1,0 +1,89 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #333333;
+    --focus-ring: #005fcc;
+    --modal-bg: rgba(0, 0, 0, 0.85);
+}
+
+body.dark-mode {
+    --bg-color: #121212;
+    --text-color: #f1f1f1;
+    --focus-ring: #66b2ff;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header { text-align: center; padding: 2rem; }
+code { background: #eee; padding: 2px 6px; border-radius: 4px; color: #d63384; font-weight: bold; }
+body.dark-mode code { background: #333; color: #ff85c0; }
+
+/* FOCUS MANAGEMENT: Hiển thị Focus Ring rõ ràng khi dùng phím Tab */
+*:focus-visible {
+    outline: 3px solid var(--focus-ring);
+    outline-offset: 3px;
+    border-radius: 4px;
+}
+/* Ẩn outline nếu người dùng chỉ click chuột (tránh rối mắt) */
+*:focus:not(:focus-visible) { outline: none; }
+
+/* Gallery */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 0 2rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.gallery-item {
+    background: none; border: none; cursor: pointer; padding: 0;
+    transition: transform 0.2s; border-radius: 8px; overflow: hidden;
+}
+.gallery-item:hover { transform: scale(1.03); }
+.gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; }
+
+/* Modals Chung */
+.modal {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: var(--modal-bg);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 1000;
+}
+.modal[hidden] { display: none; } /* Trạng thái ẩn chuẩn A11y */
+
+/* Lightbox */
+.lightbox-content { position: relative; max-width: 90%; max-height: 90vh; text-align: center; }
+.lightbox-content img { max-width: 100%; max-height: 80vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+.icon-btn { background: rgba(255,255,255,0.2); border: none; color: white; font-size: 2rem; cursor: pointer; border-radius: 50%; width: 50px; height: 50px; transition: 0.2s; display: flex; justify-content: center; align-items: center;}
+.icon-btn:hover { background: rgba(255,255,255,0.4); }
+.close-btn { position: absolute; top: -20px; right: -20px; z-index: 10; }
+.nav-btn { position: absolute; top: 50%; transform: translateY(-50%); }
+.nav-btn.left { left: -60px; }
+.nav-btn.right { right: -60px; }
+.status-bar { color: white; margin-top: 10px; font-weight: bold; font-size: 1.2rem; }
+
+/* Command Palette */
+.command-modal { align-items: flex-start; padding-top: 10vh; }
+.command-content {
+    background: var(--bg-color); width: 600px; max-width: 95%;
+    border-radius: 8px; box-shadow: 0 15px 50px rgba(0,0,0,0.5); overflow: hidden;
+}
+.search-wrapper { display: flex; align-items: center; padding: 15px; border-bottom: 1px solid #ddd; }
+body.dark-mode .search-wrapper { border-color: #444; }
+#commandInput { flex: 1; border: none; font-size: 1.2rem; background: transparent; color: var(--text-color); outline: none; }
+.esc-hint { font-size: 0.8rem; color: #888; background: #eee; padding: 2px 6px; border-radius: 4px; }
+body.dark-mode .esc-hint { background: #333; }
+
+.command-list { max-height: 300px; overflow-y: auto; }
+.command-item {
+    display: block; width: 100%; text-align: left; padding: 15px; border: none; background: transparent; cursor: pointer; color: var(--text-color); border-bottom: 1px solid #f0f0f0;
+}
+body.dark-mode .command-item { border-color: #2a2a2a; }
+.command-item:hover, .command-item:focus-visible { background: var(--focus-ring); color: white; }

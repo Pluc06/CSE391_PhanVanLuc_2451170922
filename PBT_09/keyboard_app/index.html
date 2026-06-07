@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keyboard & Accessibility App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>🖼️ Gallery & Command Palette</h1>
+        <p>Thử nghiệm: Bấm <code>Ctrl + K</code> để mở Command Palette, <code>1-9</code> để xem ảnh, <code>Mũi tên</code> để chuyển, <code>Space</code> để auto-play.</p>
+    </header>
+
+    <main>
+        <div id="galleryContainer" class="gallery-grid" role="region" aria-label="Danh sách hình ảnh"></div>
+    </main>
+
+    <div id="lightboxModal" class="modal" role="dialog" aria-modal="true" aria-label="Trình xem ảnh" hidden>
+        <div class="lightbox-content">
+            <button id="closeLightboxBtn" class="icon-btn close-btn" aria-label="Đóng trình xem ảnh (Phím Escape)">✖</button>
+            <button id="prevBtn" class="icon-btn nav-btn left" aria-label="Ảnh trước (Phím mũi tên trái)">◀</button>
+            
+            <img id="lightboxImg" src="" alt="Ảnh phóng to" aria-live="polite">
+            <div id="lightboxStatus" class="status-bar" aria-live="assertive"></div>
+            
+            <button id="nextBtn" class="icon-btn nav-btn right" aria-label="Ảnh tiếp theo (Phím mũi tên phải)">▶</button>
+        </div>
+    </div>
+
+    <div id="commandPalette" class="modal command-modal" role="dialog" aria-modal="true" aria-label="Bảng lệnh" hidden>
+        <div class="command-content">
+            <div class="search-wrapper">
+                <input type="text" id="commandInput" placeholder="Gõ lệnh (Vd: dark mode, play...)" aria-autocomplete="list" aria-controls="commandList">
+                <span class="esc-hint">ESC để đóng</span>
+            </div>
+            <div id="commandList" class="command-list" role="listbox"></div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
