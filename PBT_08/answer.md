@@ -169,3 +169,53 @@ Khi dùng toán tử Spread (...product) để tạo ra object copy, JS chỉ t�
 Tuy nhiên, với các thuộc tính bị lồng bên trong (nested object) như thuộc tính specs, toán tử Spread sẽ lười biếng và không tạo ra object mới. Nó chỉ copy địa chỉ tham chiếu bộ nhớ của object specs cũ.
 
 Hậu quả là copy.specs và product.specs thực chất đang cùng trỏ về chung một chỗ trong RAM máy tính. Khi mình sửa copy.specs.ram = 16, cái gốc product.specs.ram cũng bị thay đổi theo thành 16.
+
+# PHẦN C — SUY LUẬN (20 điểm)
+## Câu C1 (10đ) — Refactor Code
+1. Viết lại thành ≤ 10 dòng dùng filter, map, sort, destructuring, arrow functions.
+const processOrders = (orders) => orders
+  .filter(({ status, total }) => status === "completed" && total > 100000)
+  .map(({ id, customer, total }) => ({
+    id, customer, total,
+    discount: total * 0.1,
+    finalTotal: total * 0.9
+  }))
+  .sort((a, b) => b.finalTotal - a.finalTotal);
+
+## Câu C2 (10đ) — Thiết kế API
+
+const miniArray = {
+    // map: duyệt từng phần tử, biến đổi rồi đẩy vào mảng mới
+    map(arr, fn) {
+        const result = [];
+        for (let i = 0; i < arr.length; i++) {
+            result.push(fn(arr[i]));
+        }
+        return result;
+    },
+
+    // filter: duyệt qua, nếu điều kiện fn(item) là true thì mới giữ lại
+    filter(arr, fn) {
+        const result = [];
+        for (let i = 0; i < arr.length; i++) {
+            if (fn(arr[i])) {
+                result.push(arr[i]);
+            }
+        }
+        return result;
+    },
+
+    // reduce: dùng biến accumulator (bộ tích lũy) để cộng dồn giá trị
+    reduce(arr, fn, initialValue) {
+        let accumulator = initialValue;
+        for (let i = 0; i < arr.length; i++) {
+            accumulator = fn(accumulator, arr[i]);
+        }
+        return accumulator;
+    }
+};
+
+// --- Test lại ---
+console.log(miniArray.map([1, 2, 3], x => x * 2));        // → [2,4,6]
+console.log(miniArray.filter([1, 2, 3, 4], x => x > 2));    // → [3,4]
+console.log(miniArray.reduce([1, 2, 3, 4], (a, b) => a + b, 0)); // → 10
