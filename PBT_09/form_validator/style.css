@@ -1,0 +1,113 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    width: 400px;
+    max-width: 90%;
+}
+
+h2 { text-align: center; margin-bottom: 20px; color: #333; }
+
+.form-group { margin-bottom: 15px; position: relative; }
+label { display: block; margin-bottom: 5px; font-weight: bold; font-size: 0.9rem; color: #555; }
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+input:focus { border-color: #007bff; }
+input.invalid { border-color: #dc3545; }
+input.valid { border-color: #28a745; }
+
+/* Icon check Tên */
+.input-wrapper { position: relative; }
+.status-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+
+/* Thông báo lỗi */
+.error-msg {
+    color: #dc3545;
+    font-size: 0.8rem;
+    margin-top: 5px;
+    min-height: 15px;
+}
+
+/* Thanh độ mạnh mật khẩu */
+.strength-meter {
+    height: 6px;
+    background: #e9ecef;
+    border-radius: 3px;
+    margin-top: 8px;
+    overflow: hidden;
+}
+.progress {
+    height: 100%;
+    width: 0;
+    transition: all 0.3s ease;
+}
+.strength-text { display: block; font-size: 0.8rem; margin-top: 4px; font-weight: bold; }
+
+.weak-bg { background-color: #dc3545; width: 33.33%; }
+.weak-text { color: #dc3545; }
+
+.medium-bg { background-color: #ffc107; width: 66.66%; }
+.medium-text { color: #ffc107; }
+
+.strong-bg { background-color: #28a745; width: 100%; }
+.strong-text { color: #28a745; }
+
+/* Nút Submit */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+button[type="submit"]:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+button[type="submit"]:not(:disabled):hover { background: #0056b3; }
+
+/* Modal */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none; justify-content: center; align-items: center;
+}
+.modal-overlay.active { display: flex; }
+.modal-content {
+    background: #fff; padding: 25px; border-radius: 8px;
+    width: 350px; text-align: center; box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+.modal-data { text-align: left; background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; font-size: 0.9rem; line-height: 1.6; }
+.modal-content button {
+    padding: 8px 20px; background: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer;
+}
