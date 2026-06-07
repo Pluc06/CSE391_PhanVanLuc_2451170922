@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Bootstrap 5</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body class="bg-light">
+
+    <aside class="bg-dark text-white position-fixed top-0 start-0 h-100 p-3 shadow" style="width: 250px; z-index: 1000;">
+        <h3 class="fs-4 text-center py-3 border-bottom border-secondary mb-4">Admin Panel</h3>
+        <div class="list-group list-group-flush" data-bs-theme="dark">
+            <a href="#" class="list-group-item list-group-item-action active"><i class="bi bi-speedometer2 me-2"></i> Tổng quan</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-box-seam me-2"></i> Đơn hàng</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-people me-2"></i> Khách hàng</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-bar-chart me-2"></i> Báo cáo</a>
+            <a href="#" class="list-group-item list-group-item-action"><i class="bi bi-gear me-2"></i> Cài đặt</a>
+        </div>
+    </aside>
+
+    <main style="margin-left: 250px;" class="p-4">
+        
+        <header class="d-flex justify-content-between items-center mb-4 pb-3 border-bottom">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0">
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Home</a></li>
+                    <li class="breadcrumb-item"><a href="#" class="text-decoration-none">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tổng quan</li>
+                </ol>
+            </nav>
+
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle shadow-sm border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-person-circle me-1"></i> Admin User
+                </button>
+                <ul class="dropdown-menu dropdown-menu-end">
+                    <li><a class="dropdown-item" href="#">Hồ sơ cá nhân</a></li>
+                    <li><a class="dropdown-item" href="#">Cài đặt tài khoản</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item text-danger" href="#">Đăng xuất</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
+            <i class="bi bi-check-circle-fill me-2"></i> Đăng nhập thành công! Chào mừng bạn quay lại hệ thống quản trị.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        <div class="row g-4 mb-5">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card text-white bg-primary h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h6 class="card-title text-white-50 uppercase tracking-wide">Tổng Doanh Thu</h6>
+                        <h2 class="mb-0 fw-bold">$24,500</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card text-white bg-success h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h6 class="card-title text-white-50 uppercase">Đơn Hàng Mới</h6>
+                        <h2 class="mb-0 fw-bold">142</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card text-dark bg-warning h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h6 class="card-title text-dark-50 uppercase">Đang Xử Lý</h6>
+                        <h2 class="mb-0 fw-bold">28</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="card text-white bg-danger h-100 shadow-sm border-0">
+                    <div class="card-body">
+                        <h6 class="card-title text-white-50 uppercase">Đơn Hủy</h6>
+                        <h2 class="mb-0 fw-bold">5</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-md-6 col-lg-4">
+                <div class="input-group shadow-sm">
+                    <span class="input-group-text bg-white"><i class="bi bi-search"></i></span>
+                    <input type="text" class="form-control" placeholder="Tìm mã đơn hàng...">
+                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Bộ lọc</button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#">Mới nhất</a></li>
+                        <li><a class="dropdown-item" href="#">Giá trị cao nhất</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card shadow-sm border-0 mb-5">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover mb-0">
+                        <thead class="table-dark">
+                            <tr>
+                                <th scope="col" class="px-4">Mã ĐH</th>
+                                <th scope="col">Khách hàng</th>
+                                <th scope="col">Ngày đặt</th>
+                                <th scope="col">Trạng thái</th>
+                                <th scope="col">Tổng tiền</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th scope="row" class="px-4">#DH1001</th>
+                                <td>Nguyễn Văn A</td>
+                                <td>15/10/2026</td>
+                                <td><span class="badge bg-success">Hoàn thành</span></td>
+                                <td>2,500,000đ</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="px-4">#DH1002</th>
+                                <td>Trần Thị B</td>
+                                <td>16/10/2026</td>
+                                <td><span class="badge bg-warning text-dark">Đang giao</span></td>
+                                <td>850,000đ</td>
+                            </tr>
+                            <tr>
+                                <th scope="row" class="px-4">#DH1003</th>
+                                <td>Lê Văn C</td>
+                                <td>17/10/2026</td>
+                                <td><span class="badge bg-danger">Đã hủy</span></td>
+                                <td>1,200,000đ</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <h4 class="mb-3">Câu Hỏi Thường Gặp (FAQ)</h4>
+        <div class="accordion shadow-sm mb-5" id="faqAccordion">
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Làm sao để xuất báo cáo doanh thu ra file Excel?
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Để xuất báo cáo, bạn truy cập vào mục <strong>Báo cáo</strong> ở menu bên trái, sau đó chọn khoảng thời gian cần xuất và nhấn vào nút <em>"Export to Excel"</em> ở góc phải màn hình.
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed fw-bold" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Tôi có thể cấp quyền truy cập cho nhân viên khác không?
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
+                    <div class="accordion-body">
+                        Được. Tính năng này khả dụng trong phần <strong>Cài đặt > Phân quyền User</strong>. Bạn có thể thêm email của nhân viên và gán các role cụ thể.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
